@@ -1,0 +1,59 @@
+[33mcommit dd792e316b7e6ad033fa6fc2e859b0ad1d9f1713[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: juanNajul <juannajulvillegas@gmail.com>
+Date:   Mon May 16 23:23:55 2022 -0400
+
+    gitignore envs files
+
+[33mcommit 96020a704cad1f374d3493cc454b463ac0b59a4f[m
+Author: juanNajul <juannajulvillegas@gmail.com>
+Date:   Mon May 16 23:22:51 2022 -0400
+
+    change .env.dev
+
+[33mcommit dbe09549378a2a42f3463404d5e63ed5989bad6b[m
+Author: juanNajul <juannajulvillegas@gmail.com>
+Date:   Mon May 16 23:22:18 2022 -0400
+
+    change .env.dev
+
+[33mcommit 5cd097461c9f9b43320ddbdd94271b01daa79957[m
+Author: juanNajul <juannajulvillegas@gmail.com>
+Date:   Mon May 16 23:20:32 2022 -0400
+
+    change .env.dev
+
+[33mcommit c48f23ccd7ba6ac559229c2bd14edc1b525bc91d[m
+Author: juanNajul <juannajulvillegas@gmail.com>
+Date:   Mon May 16 23:20:17 2022 -0400
+
+    change .env.dev
+
+[33mcommit 3fda9fb5ebb65e494f77a5937c868018d5a462a3[m
+Author: juanNajul <juannajulvillegas@gmail.com>
+Date:   Mon May 16 20:18:28 2022 -0400
+
+    set up gitignore configurations envs
+
+[33mcommit 15dffce78149a7465f43dacdaa67c039809a4a5d[m
+Author: juanNajul <juannajulvillegas@gmail.com>
+Date:   Mon May 16 20:16:38 2022 -0400
+
+    set up gitignore configurations
+
+[33mcommit af432744cec78133322b154c11eea0daa9c2df22[m
+Author: juannajul <64116545+juannajul@users.noreply.github.com>
+Date:   Mon May 16 20:04:23 2022 -0400
+
+    Create LICENSE
+
+[33mcommit 11c91f18b756ec23f1c26733803cc2bfeae7408f[m
+Author: juannajul <64116545+juannajul@users.noreply.github.com>
+Date:   Mon May 16 20:02:05 2022 -0400
+
+    Create README.md
+
+[33mcommit fee4c8876244588b54ad83f865f74c47bff41931[m
+Author: juanNajul <juannajulvillegas@gmail.com>
+Date:   Mon May 16 19:56:48 2022 -0400
+
+    set up project configurations
