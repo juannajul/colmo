@@ -1,5 +1,6 @@
-.env.prod/*
-.env.prod.db/*
+.env.prod/
+.env.dev/
+.env.prod.db/
 .venv/
 .venv/*
 venv/
