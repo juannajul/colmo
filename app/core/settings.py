@@ -27,6 +27,9 @@ INSTALLED_APPS = [
     # Local Apps
     'inventory',
     'users',
+
+    # Third party apps
+    'rest_framework'
 ]
 
 # User & Authentications
