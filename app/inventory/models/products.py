@@ -76,4 +76,7 @@ class Media(models.Model):
         verbose_name=_("alternative text"),
         help_text=_("format: required, max-255"), 
     ) 
+
+    class Meta:
+        verbose_name_plural = "Media"
     
