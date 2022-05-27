@@ -1,7 +1,6 @@
 """ Category serializers. """
 
 # Django restframework
-from dataclasses import field
 from rest_framework import serializers
 
 # Models
@@ -12,4 +11,4 @@ class CategoryModelSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Category
-        field = '__all__'
+        fields = '__all__'
