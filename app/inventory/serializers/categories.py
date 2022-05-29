@@ -20,7 +20,6 @@ class CategoryModelSerializer(serializers.ModelSerializer):
     
     def validate(self, data):
         """Validate if de slug already exists. If exists modificate."""
-        print(data)
         slug_name = data['slug']
         if Category.objects.filter(slug=slug_name).exists:
             id = str(uuid.uuid4())
@@ -28,6 +27,5 @@ class CategoryModelSerializer(serializers.ModelSerializer):
                 data["name"], id[:8]
             ))
             data['slug'] = new_slug_name
-        print(data)
         return data
 

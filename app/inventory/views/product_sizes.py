@@ -1,27 +1,24 @@
-"""Categories views."""
+"""Product sizes views."""
 
 # Django rest framework
 from rest_framework import mixins, viewsets
 from rest_framework.response import Response
 
 # Serializers
-from inventory.serializers.categories import CategoryModelSerializer
+from inventory.serializers.product_sizes import ProductSizesModelSerializer
 
 # Models 
-from inventory.models.products import Category
+from inventory.models.products import ProductSizes
 
-class CategoryViewSet(
+class ProductSizesViewSet(
     mixins.ListModelMixin,
     mixins. UpdateModelMixin,
     mixins.RetrieveModelMixin,
     mixins.CreateModelMixin,
     mixins.DestroyModelMixin,
     viewsets.GenericViewSet):
-    """Category view set"""
+    """Product sizes view set"""
 
-    queryset = Category.objects.all()
-    serializer_class = CategoryModelSerializer
-    lookup_field = 'slug'
-
-
+    queryset = ProductSizes.objects.all()
+    serializer_class = ProductSizesModelSerializer
 
