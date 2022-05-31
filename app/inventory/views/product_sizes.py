@@ -12,7 +12,7 @@ from inventory.models.products import ProductSizes
 
 class ProductSizesViewSet(
     mixins.ListModelMixin,
-    mixins. UpdateModelMixin,
+    mixins.UpdateModelMixin,
     mixins.RetrieveModelMixin,
     mixins.CreateModelMixin,
     mixins.DestroyModelMixin,

@@ -27,6 +27,7 @@ class ProductSizes(models.Model):
 class Brand(models.Model):
     """Brands Model."""
     name = models.CharField(max_length=255, unique=True, verbose_name="Brand name")
+    slug = models.SlugField(max_length=255, unique=True, verbose_name="Category slug")
     description = models.TextField(max_length=450, blank=True, verbose_name="Brand descrition")
     brand_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Brand user")
 
@@ -45,7 +46,7 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="product_brand")
     made_by = models.CharField(max_length=255, verbose_name="Made by brand")
     store_price = models.DecimalField(max_digits=6, decimal_places=2)
-    sale_price = models.DecimalField(max_digits=6, decimal_places=2, blank=True)
+    sale_price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
