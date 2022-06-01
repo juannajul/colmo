@@ -14,6 +14,7 @@ class ProductModelSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField(many=True)
     brand = serializers.StringRelatedField()
     sizes = ProductSizesModelSerializer(many=True)
+    images = serializers.StringRelatedField(many=True)
     
 
     class Meta:

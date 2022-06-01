@@ -35,7 +35,7 @@ class Sizes(models.Model):
 class Brand(models.Model):
     """Brands Model."""
     name = models.CharField(max_length=255, unique=True, verbose_name="Brand name")
-    slug = models.SlugField(max_length=255, unique=True, verbose_name="Category slug")
+    slug = models.SlugField(max_length=255, unique=True, verbose_name="Brand slug")
     description = models.TextField(max_length=450, blank=True, verbose_name="Brand descrition")
     brand_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Brand user")
 
@@ -60,6 +60,33 @@ class ProductSizes(models.Model):
         verbose_name_plural = "Product sizes"
 
 
+class ProductMedia(models.Model):
+    """Media model."""
+    
+    image = models.ImageField(
+        unique=False,
+        null=False,
+        blank=True,
+        verbose_name=_("product image"),
+        upload_to="media/products/",
+        help_text=_("format: required, default-default.png"),
+    )
+    alt_text = models.CharField(
+        max_length=255,
+        unique=False,
+        null=False,
+        blank=True,
+        verbose_name=_("alternative text"),
+        help_text=_("format: required, max-255"), 
+    ) 
+
+    def __str__(self):
+        return self.alt_text
+
+    class Meta:
+        verbose_name_plural = "Media"
+    
+
 class Product(models.Model):
     """Product model."""
     name = models.CharField(max_length=255, verbose_name="Product name")
@@ -68,6 +95,7 @@ class Product(models.Model):
     description = models.TextField(max_length=455, blank=True, verbose_name="Product description")
     category = models.ManyToManyField(Category, blank=True, related_name="product_categories")
     sizes = models.ManyToManyField(ProductSizes, related_name="item_product_sizes")
+    images = models.ManyToManyField(ProductMedia, related_name="product_images")
     stock = models.PositiveBigIntegerField(default=0)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="product_brand")
     made_by = models.CharField(max_length=255, verbose_name="Made by brand")
@@ -84,32 +112,3 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = "Products"
 
-
-
-class Media(models.Model):
-    """Media model."""
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name="media_product_inventory",
-    )
-    image = models.ImageField(
-        unique=False,
-        null=False,
-        blank=True,
-        verbose_name=_("product image"),
-        upload_to="images/",
-        help_text=_("format: required, default-default.png"),
-    )
-    alt_text = models.CharField(
-        max_length=255,
-        unique=False,
-        null=False,
-        blank=True,
-        verbose_name=_("alternative text"),
-        help_text=_("format: required, max-255"), 
-    ) 
-
-    class Meta:
-        verbose_name_plural = "Media"
-    
