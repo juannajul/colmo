@@ -12,17 +12,25 @@ class Category(models.Model):
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Category slug")
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        """Return brand name"""
+        return self.name
+
     class Meta:
         verbose_name_plural = "Categories"
 
-class ProductSizes(models.Model):
-    """Products sizes model."""
-    size = models.CharField(max_length=20, unique=True,verbose_name="Product size")
+class Sizes(models.Model):
+    """Sizes model."""
+    size = models.CharField(max_length=20, unique=True,verbose_name="Size")
     size_type = models.CharField(max_length=20, blank=True, verbose_name="Size type")
 
+    def __str__(self):
+        """Return brand name"""
+        return self.size
+
     class Meta:
-        verbose_name = "Product Size"
-        verbose_name_plural = "Products Sizes"
+        verbose_name = "Sizes"
+        verbose_name_plural = "Sizes"
 
 class Brand(models.Model):
     """Brands Model."""
@@ -31,8 +39,26 @@ class Brand(models.Model):
     description = models.TextField(max_length=450, blank=True, verbose_name="Brand descrition")
     brand_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Brand user")
 
+    def __str__(self):
+        """Return brand name"""
+        return self.name
+
     class Meta:
         verbose_name_plural = "Brands"
+
+
+class ProductSizes(models.Model):
+    """Product sizes model"""
+    size = models.ForeignKey(Sizes, on_delete=models.CASCADE, related_name="product_size")
+    qty = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        """Return brand name"""
+        return self.size.size
+
+    class Meta:
+        verbose_name_plural = "Product sizes"
+
 
 class Product(models.Model):
     """Product model."""
@@ -41,7 +67,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Product slug")
     description = models.TextField(max_length=455, blank=True, verbose_name="Product description")
     category = models.ManyToManyField(Category, blank=True, related_name="product_categories")
-    size = models.ManyToManyField(ProductSizes, related_name="product_size")
+    sizes = models.ManyToManyField(ProductSizes, related_name="item_product_sizes")
     stock = models.PositiveBigIntegerField(default=0)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="product_brand")
     made_by = models.CharField(max_length=255, verbose_name="Made by brand")
@@ -51,8 +77,14 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        """Return brand name"""
+        return self.name
+
     class Meta:
         verbose_name_plural = "Products"
+
+
 
 class Media(models.Model):
     """Media model."""

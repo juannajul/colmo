@@ -25,8 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Local Apps
-    'inventory',
     'users',
+    'inventory',
 
     # Third party apps
     'rest_framework'

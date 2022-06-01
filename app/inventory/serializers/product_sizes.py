@@ -13,3 +13,12 @@ class ProductSizesModelSerializer(serializers.ModelSerializer):
         model = ProductSizes
         fields = '__all__'
         
+
+class CreateBrandSerializer(serializers.ModelSerializer):
+    """Create product sizes serializer."""
+    size = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = ProductSizes
+        fields = '__all__'
+        
