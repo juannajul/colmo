@@ -14,11 +14,11 @@ class ProductSizesModelSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 
-class CreateBrandSerializer(serializers.ModelSerializer):
+class CreateProductSizesSerializer(serializers.ModelSerializer):
     """Create product sizes serializer."""
-    size = serializers.StringRelatedField(many=True)
+    #size = serializers.StringRelatedField()
 
     class Meta:
         model = ProductSizes
-        fields = '__all__'
+        fields = ('size', "qty")
         

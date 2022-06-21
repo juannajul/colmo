@@ -1,5 +1,6 @@
 """Inventory models."""
 
+from distutils.command.upload import upload
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -57,35 +58,7 @@ class ProductSizes(models.Model):
         return self.size.size
 
     class Meta:
-        verbose_name_plural = "Product sizes"
-
-
-class ProductMedia(models.Model):
-    """Media model."""
-    
-    image = models.ImageField(
-        unique=False,
-        null=False,
-        blank=True,
-        verbose_name=_("product image"),
-        upload_to="media/products/",
-        help_text=_("format: required, default-default.png"),
-    )
-    alt_text = models.CharField(
-        max_length=255,
-        unique=False,
-        null=False,
-        blank=True,
-        verbose_name=_("alternative text"),
-        help_text=_("format: required, max-255"), 
-    ) 
-
-    def __str__(self):
-        return self.alt_text
-
-    class Meta:
-        verbose_name_plural = "Media"
-    
+        verbose_name_plural = "Product sizes" 
 
 class Product(models.Model):
     """Product model."""
@@ -94,13 +67,17 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Product slug")
     description = models.TextField(max_length=455, blank=True, verbose_name="Product description")
     category = models.ManyToManyField(Category, blank=True, related_name="product_categories")
-    sizes = models.ManyToManyField(ProductSizes, related_name="item_product_sizes")
-    images = models.ManyToManyField(ProductMedia, related_name="product_images")
+    sizes = models.ManyToManyField(ProductSizes, related_name="item_product_sizes", null=True)
+    color = models.CharField(max_length=55, blank=True)
+    image = models.ImageField(blank=True, upload_to="media/products/", verbose_name="product image")
+    image2 = models.ImageField(blank=True, upload_to="media/products/", verbose_name="product image 2")
+    image3 = models.ImageField(blank=True, upload_to="media/products/", verbose_name="product image 3")
     stock = models.PositiveBigIntegerField(default=0)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="product_brand")
     made_by = models.CharField(max_length=255, verbose_name="Made by brand")
     store_price = models.DecimalField(max_digits=6, decimal_places=2)
     sale_price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, default=0)
+    is_sale_price_active = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -112,3 +89,13 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = "Products"
 
+
+            # cambiar models y que product sizes tenga como foreignkey a product
+            #new arrivals. fecah de creacion del producto
+            # filtros Creo que se deria hacer modelo para creacion de filtros
+            # las tallas s=dsiponibles 
+            #actvivar descuentos
+            # dia epecifico activar descuento a usuarios con mas de 5 productos dentro del carrito
+            # Brand is_active field
+            
+    
