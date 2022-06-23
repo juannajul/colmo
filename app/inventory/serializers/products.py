@@ -38,33 +38,28 @@ class CreateProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = '__all__'
     
-    # def validate(self, data):
-    #     print("SADF")
-    #     """Validate if de slug already exists. If exists modificate."""
-    #     print("SDFSDF")
-    #     slug_name = data['slug']
-    #     print(Product.objects.filter(slug=slug_name).exists())
-    #     if Product.objects.filter(slug=slug_name).exists():
-    #         id = str(uuid.uuid4())
-    #         new_slug_name = slugify("{}-{}".format(
-    #             data["name"], id[:8]
-    #         ))
-    #         data['slug'] = new_slug_name
-    #     return data
+    def validate(self, data):
+        """Validate if de slug already exists. If exists modificate."""
+        slug_name = data['slug']
+        print(Product.objects.filter(slug=slug_name).exists())
+        if Product.objects.filter(slug=slug_name).exists():
+            id = str(uuid.uuid4())
+            new_slug_name = slugify("{}-{}".format(
+                data["name"], id[:8]
+            ))
+            data['slug'] = new_slug_name
+        return data
 
     def create(self, data):
+        """Create single product."""
         user = self.context['request'].user
         brand_user = Brand.objects.get(brand_user=user)        
         data['brand'] = brand_user
         product = Product.objects.create(
-            name=data['name'],
-            sku=data['sku'],
-            slug=data['slug'],
-            brand=data['brand'],
-            color=data['color'],
-            made_by=data['made_by'],
-            store_price=data['store_price'],
-            sale_price=data['sale_price'],
+            name=data['name'], sku=data['sku'],
+            slug=data['slug'], brand=data['brand'],
+            color=data['color'], made_by=data['made_by'],
+            store_price=data['store_price'], sale_price=data['sale_price'],
             is_sale_price_active=data['is_sale_price_active']
         )
         product.save()

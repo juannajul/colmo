@@ -30,7 +30,6 @@ class ProductViewSet(
     """Product view set"""
 
     queryset = Product.objects.all()
-   # serializer_class = ProductModelSerializer
     lookup_field = 'slug'
 
     def get_serializer_class(self):
@@ -46,12 +45,3 @@ class ProductViewSet(
             permissions.append(IsBrandOwner)
         return [p() for p in permissions]
         """
-
-    # def create(self, request, *args, **kwargs):
-    #     """Add requestinf user to ride."""
-    #     product = self.get_object()
-    #     serializer_class = self.get_serializer_class()
-    #     serializer_class.is_valid(raise_exception=True)
-    #     product = serializer_class.save()
-    #     data = CreateProductSerializer(product).data
-    #     return Response(data, status=status.HTTP_200_OK)

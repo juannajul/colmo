@@ -55,7 +55,7 @@ class ProductSizes(models.Model):
 
     def __str__(self):
         """Return brand name"""
-        return self.size.size
+        return f'{self.id} | Size: {self.size}, Qty: {self.qty}, {self.item_product_sizes}'
 
     class Meta:
         verbose_name_plural = "Product sizes" 
@@ -64,7 +64,7 @@ class Product(models.Model):
     """Product model."""
     name = models.CharField(max_length=255, verbose_name="Product name")
     sku = models.CharField(max_length=20, unique=True, verbose_name= "Product sku")
-    slug = models.SlugField(max_length=255, unique=True, verbose_name="Product slug")
+    slug = models.SlugField(max_length=255, unique=False, verbose_name="Product slug")
     description = models.TextField(max_length=455, blank=True, verbose_name="Product description")
     category = models.ManyToManyField(Category, blank=True, related_name="product_categories")
     sizes = models.ManyToManyField(ProductSizes, related_name="item_product_sizes", null=True)
