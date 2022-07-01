@@ -41,7 +41,6 @@ class CreateProductSerializer(serializers.ModelSerializer):
     def validate(self, data):
         """Validate if de slug already exists. If exists modificate."""
         slug_name = data['slug']
-        print(Product.objects.filter(slug=slug_name).exists())
         if Product.objects.filter(slug=slug_name).exists():
             id = str(uuid.uuid4())
             new_slug_name = slugify("{}-{}".format(
@@ -84,7 +83,7 @@ class CreateProductSerializer(serializers.ModelSerializer):
             # las tallas s=dsiponibles 
             #actvivar descuentos
             # dia epecifico activar descuento a usuarios con mas de 5 productos dentro del carrito
-            
+            #no permitir category slug en mayusculas
     
     
 

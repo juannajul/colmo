@@ -7,8 +7,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('users.urls', namespace="users")),
-    path('', include(('inventory.urls', 'inventory'), namespace='inventory')),
+    path('', include('colmo.urls', namespace="colmo")),
+    path('users/', include('users.urls', namespace="users")),
+    path('api/', include(('inventory.urls', 'inventory'), namespace='inventory')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ] 
 

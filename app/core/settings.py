@@ -25,8 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Local Apps
-    'users',
-    'inventory',
+    'users.apps.UsersConfig',
+    'inventory.apps.InventoryConfig',
+    'colmo.apps.ColmoConfig',
 
     # Third party apps
     'rest_framework'
@@ -50,7 +51,9 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,6 +120,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = (
+    BASE_DIR / "static",
+)
+
 
 # Media files 
 

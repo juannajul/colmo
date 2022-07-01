@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/COLMO-Submarca-Negro.jpg' %}">
+    <link rel="icon" href="{% static 'img/COLMO-Submarca-Negro.jpg' %}">
+    <title>Colmo Store</title>
+    {% block script %}
+        <script defer src="{% static 'js/menu.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+    <div id="website-area">
+        <div id="announcements">
+            <span id="announcements-message">
+                <p>Entrega inmediata en ordenes antes de las 6pm</p>    
+            </span>
+        </div>
+        <header id="header" class="menu-fixed">
+            
+            <nav id="nav" class="menu-desplegable">
+                <div id="logo">
+                    <a href="">
+                        <img src="{% static 'img/COLMO-Logo_principal-Negro.png' %}" alt="Colmo Store">
+                    </a>
+                </div>
+                <div class="menu-btn-nav">
+                    <div class="menu-btn">
+                      <div class="btn__burger"></div>
+                    </div>
+                </div>
+
+
+                <ul id="nav-menu">
+                    <li>
+                        <a href="">CABALLEROS</a>
+                    </li>
+                    
+                    <li>
+                        <a href="">DAMAS</a>
+                    </li>
+                    
+                    <li>
+                        <a href="">ACCESORIOS</a>
+                    </li>
+                    
+                    <li>
+                        <a href="">OFERTAS</a>
+                    </li>
+
+                    <li>
+                        <a href="">MAS BUSCADOS</a>
+                    </li>
+                    
+                </ul>
+                <ul id="nav-menu-user">
+                    <li>
+                        <input id="product-search-input" type="text" placeholder="Buscar">
+                    </li> 
+                    <li>
+                        <a href="" title="user" id="user-icon">
+                            <img src="{% static 'img/user.png' %}" alt="user">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" title="basket" id="basket-icon">
+                            <img src="{% static 'img/carrito-de-compras.png' %}" alt="">
+                        </a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </header>
+            
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+        </div>
+
+        <footer>
+            <div id="footer-container">
+                <div id="footer-content">
+                    <h3>Colmo Store Web</h3>
+                    <p>juannajulvillegas@gmail.com</p>
+                    <p>&copy; Copyright. All rights reserved</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
