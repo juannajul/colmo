@@ -50,27 +50,16 @@ class ProductViewSet(
         return [p() for p in permissions]
         """
 
-    def get_queryset(self):
-        if self.action == 'men_products':
-            men_category = Category.objects.get(slug="Mens")
-            return Product.objects.filter(category=men_category)   
-        if self.action == 'women_products':
-            women_category = Category.objects.get(slug="women")
-            return Product.objects.filter(category=women_category)        
+    def get_queryset(self): 
+        if self.action == 'product_by_category':
+            category = Category.objects.get(slug=self.kwargs['slug'])
+            return Product.objects.filter(category=category)
         return Product.objects.all()
 
-    @action(detail=False, methods=["get"])
-    def men_products(self, request):
-        """List only men products."""
+    @action(detail=True, methods=["get"])
+    def product_by_category(self, request, *args, **kwargs):
+        """List products by category."""
         products = self.get_queryset()
         serializer = ProductModelSerializer(products, many=True).data
         return Response(serializer, status=status.HTTP_200_OK)
 
-    @action(detail=False, methods=["get"])
-    def women_products(self, request):
-        """List only women products."""
-        products = self.get_queryset()
-        serializer = ProductModelSerializer(products, many=True).data
-        return Response(serializer, status=status.HTTP_200_OK)
-
-    
