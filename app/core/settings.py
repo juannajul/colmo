@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'colmo.apps.ColmoConfig',
 
     # Third party apps
-    'rest_framework'
+    'rest_framework',
+    'django_filters'
 ]
 
 # User & Authentications

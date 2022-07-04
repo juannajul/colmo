@@ -89,11 +89,7 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = "Products"
 
-
-            # cambiar models y que product sizes tenga como foreignkey a product
-            #new arrivals. fecah de creacion del producto
-            # filtros Creo que se deria hacer modelo para creacion de filtros
-            # las tallas s=dsiponibles 
+            # mostrar productos por las tallas s=dsiponibles 
             #actvivar descuentos
             # dia epecifico activar descuento a usuarios con mas de 5 productos dentro del carrito
             # Brand is_active field

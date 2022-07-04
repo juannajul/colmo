@@ -21,6 +21,10 @@ from inventory.premissions.brands import IsBrandOwner
 # Serializers
 from inventory.serializers.products import CreateProductSerializer
 
+# Filters
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 class ProductViewSet(
     mixins.ListModelMixin,
@@ -33,6 +37,13 @@ class ProductViewSet(
 
     #queryset = Product.objects.all()
     lookup_field = 'slug'
+
+    # Filters
+    filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
+    search_fields = ('category', 'sizes', 'color', 'is_sale_price_active')
+    oridering_fields = ('created_at', 'store_price')
+    ordering = ('created_at',)
+    filter_fields = ('color')
 
     def get_serializer_class(self):
         """Return serializer based on actions"""
@@ -53,7 +64,7 @@ class ProductViewSet(
     def get_queryset(self): 
         if self.action == 'product_by_category':
             category = Category.objects.get(slug=self.kwargs['slug'])
-            return Product.objects.filter(category=category)
+            return Product.objects.filter(category=category, is_active=True)
         return Product.objects.all()
 
     @action(detail=True, methods=["get"])
