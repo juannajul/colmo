@@ -8,20 +8,26 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'img/COLMO-Submarca-Negro.jpg' %}">
     <link rel="icon" href="{% static 'img/COLMO-Submarca-Negro.jpg' %}">
+    <!--Glider carousel css-->
+    <link rel="stylesheet" href="{% static 'css/glider.min.css' %}">
     <title>Colmo Store</title>
-    {% block script %}
+    {% block javascript %}
         <script defer src="{% static 'js/menu.js' %}"></script>
-    {% endblock %}
+    {% endblock javascript %}
 </head>
 <body>
     <div id="website-area">
-        <div id="announcements">
+        <!--<div id="announcements">
             <span id="announcements-message">
                 <p>Entrega inmediata en ordenes antes de las 6pm</p>    
             </span>
-        </div>
+        </div>-->
         <header id="header" class="menu-fixed">
-            
+            <div id="announcements">
+                <span id="announcements-message">
+                    <p>Entrega inmediata en ordenes antes de las 6pm</p>    
+                </span>
+            </div>
             <nav id="nav" class="menu-desplegable">
                 <div id="logo">
                     <a href="">
@@ -92,5 +98,8 @@
         </footer>
 
     </div>
+    {% block script %}
+      
+    {% endblock %}
 </body>
 </html>

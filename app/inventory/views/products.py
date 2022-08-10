@@ -12,7 +12,7 @@ from rest_framework.decorators import action
 from inventory.serializers.products import ProductModelSerializer
 
 # Models 
-from inventory.models.products import Product, Brand, Category
+from inventory.models.products import Product, Brand, Category, Sizes
 
 # Permissions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -23,7 +23,9 @@ from inventory.serializers.products import CreateProductSerializer
 
 # Filters
 from rest_framework.filters import SearchFilter, OrderingFilter
-from django_filters.rest_framework import DjangoFilterBackend
+#from rest_framework.filters import DjangoFilterBackend
+from django_filters.rest_framework import DjangoFilterBackend 
+
 
 
 class ProductViewSet(
@@ -40,10 +42,10 @@ class ProductViewSet(
 
     # Filters
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
-    search_fields = ('category', 'sizes', 'color', 'is_sale_price_active')
+    search_fields = ('color','category__slug', 'sizes__size__id')
     oridering_fields = ('created_at', 'store_price')
-    ordering = ('created_at',)
-    filter_fields = ('color')
+    #ordering = ('-created_at',)
+    filter_fields = ('is_active', 'is_sale_price_active',)
 
     def get_serializer_class(self):
         """Return serializer based on actions"""
@@ -70,7 +72,7 @@ class ProductViewSet(
     @action(detail=True, methods=["get"])
     def product_by_category(self, request, *args, **kwargs):
         """List products by category."""
-        products = self.get_queryset()
+        products = self.filter_queryset(self.get_queryset())
         serializer = ProductModelSerializer(products, many=True).data
         return Response(serializer, status=status.HTTP_200_OK)
 
