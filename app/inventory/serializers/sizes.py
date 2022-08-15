@@ -12,4 +12,3 @@ class SizesModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sizes
         fields = '__all__'
-        

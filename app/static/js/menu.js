@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    window.onscroll = () =>{
-        menuSpace()
-    }
-    
+  
 });
 const menuBtn = document.querySelector('.menu-btn');
 const menuDes = document.querySelector('#nav-menu');
@@ -18,14 +15,3 @@ menuBtn.addEventListener('click', () => {
         menuOpen = false;
     }
 });
-
-function menuSpace(){
-    var startPosition = window.pageXOffset;
-    var target = 30;
-    var distance = target - startPosition;
-    var menu = document.getElementsByClassName('open');
-    console.log(distance)
-    if (distance === 1) {
-        menu.style.top = 80;
-    }
-}

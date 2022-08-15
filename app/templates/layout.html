@@ -30,7 +30,7 @@
             </div>
             <nav id="nav" class="menu-desplegable">
                 <div id="logo">
-                    <a href="">
+                    <a href="{% url 'colmo:index' %}">
                         <img src="{% static 'img/COLMO-Logo_principal-Negro.png' %}" alt="Colmo Store">
                     </a>
                 </div>
@@ -85,6 +85,7 @@
         <div class="body">
             {% block body %}
             {% endblock %}
+            
         </div>
 
         <footer>

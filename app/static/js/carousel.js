@@ -13,7 +13,7 @@ function getRandomProducts(){
                 productBox.innerHTML = 
                 `<div class="product-img-container">
                     <div class="product-img">
-                        <a href=""><img src="${product.image}" alt=""></a>
+                        <a href="/product/${product.slug}/"><img src="${product.image}" alt=""></a>
                     </div>
                 </div>
                 <div class="product-box-text">

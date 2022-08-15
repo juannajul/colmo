@@ -3,15 +3,12 @@
 {% load static %}
 
 {% block body %}
+   <!--PRODUCT CONTAINER-->
    <section id="index-content">
-      <!-- BANNER -->
-      <div id="index-banner-container">
-         <div class="capa"></div>
-         <div class="banner-content">
-         </div> 
-      </div>
+      <section id="product-retrieve-container">
+         
+      </section>
 
-      <!--<div id="colmo-design-background"></div>-->
       <!-- PRODUCT SLIDER -->
       <section id="product-slider-section">
          <!-- title -->
@@ -39,6 +36,7 @@
 {% endblock body %}
 
 {% block script %}
-    <script src="{% static '/js/carousel.js' %}"></script>
-    <script src="{% static '/js/glider.min.js' %}"></script>
+   <script src="{% static '/js/product_retrieve.js' %}"></script>
+   <script src="{% static '/js/carousel.js' %}"></script>
+   <script src="{% static '/js/glider.min.js' %}"></script>
 {% endblock %}
