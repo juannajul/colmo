@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block body %}
+
+   <div id="index-banner-container">
+      <div class="capa"></div>
+      <div class="banner-content">
+   </div> 
+   
+   <div id="list-product-banner-container">
+      <div class="list-product-banner-title-container">
+         <h2 class="list-product-banner-title">{{slug}}</h2>
+      </div>
+      <div class="list-products-banner-filters-container">
+         <div id="list-products-banner-tops" class="list-products-banner-filters list-products-banner-filters-active">
+            <h4 class="list-products-filters-active-title list-tops-title">Tops</h4>
+         </div>
+         <div id="list-products-banner-bottoms" class="list-products-banner-filters list-products-banner-filters-active">
+            <h4 class="list-products-filters-active-title list-bottoms-title">Bottoms</h4>
+         </div>
+         <div id="list-products-banner-shoes" class="list-products-banner-filters list-products-banner-filters-active">
+            <h4 class="list-products-filters-active-title list-shoes-title">Shoes</h4>
+         </div>
+      </div>
+   </div>
+
+   </div>
+   <!--PRODUCT CONTAINER-->
+   <section id="index-content">
+      <section id="list-products-section">
+         <div id="list-products-container"></div>
+         <div id="pagination-btn-container">
+            <div id="pagination-btn-prev" class=""><h4>Anterior</h4></div>/<div id="pagination-btn-next" class=""><h4>Siguiente</h4></div>
+         </div>
+      </section>
+
+      <div class="colmo-line"></div>
+
+      <!-- PRODUCT SLIDER -->
+      <section id="product-slider-section">
+         <!-- title -->
+         <div class="product-slider-container">
+            <!--<h3 class="product-slider-heading">Productos Nuevos</h3>-->
+         
+            <div class="glider-contain">
+               <div class="glider" id="glider-id">
+                     <!--Codigo para el carrusel de productos-->
+               </div>
+               
+               <div id="product-slider-previus-btn" class="glider-prev">
+                  <button aria-label="Previous" class="glider-prev">«</button>
+               </div>
+               <div id="product-slider-next-btn" class="glider-next">
+                  <button aria-label="Next" class="glider-next">»</button>
+               </div>
+               
+            </div>
+         </div>
+
+      </section>
+
+   </section>
+{% endblock body %}
+
+{% block script %}
+   <script src="{% static '/js/carousel.js' %}"></script>
+   <script src="{% static '/js/glider.min.js' %}"></script>
+   <script src="{% static '/js/list_products.js' %}"></script>
+{% endblock %}

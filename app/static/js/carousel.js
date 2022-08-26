@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function getRandomProducts(){
-    fetch(`/api/products/?ordering=-created_at`)
+    fetch(`/api/products/?ordering=-created_at&limit=15`)
         .then(response => response.json())
         .then(products =>{
-            console.log(products)
-            products.forEach(product => {
+            //console.log(products)
+            products.results.forEach(product => {
                 const productBox = document.createElement("DIV")
                 productBox.classList.add("product-box")
                 productBox.innerHTML = 

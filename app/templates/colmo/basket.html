@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block body %}
+   <!--PRODUCT CONTAINER-->
+   <section id="index-content">
+      
+        <section id="basket-container">
+            <div id="basket-title-container">
+                <h2 id="basket-title">Tu carrito</h2>
+            </div>
+            <div id="basket-info-container">
+                {% with total_qty=basket|length %}
+                    {% if total_qty > 0 %}
+                        <h4 class="basket-total-qty">Total ({{basket|length}} Productos)</h4>
+                    {% else %}
+                        <h4 class="basket-total-qty">Total (0 Productos)</h4>
+                    {% endif %}
+                {% endwith %}
+                <h4 class="basket-total-price">${{basket.get_total_price}}</h4> 
+                
+            </div>
+            <div class="basket-info-container">
+
+            </div>
+            
+            <div class="colmo-line"></div>
+
+            <div id="basket-products-container">
+                {% if basket %}
+                    {% for item in basket %}
+                        {% with product=item.product %}
+                            <div id="basket-product-container">
+                                <div id="basket-product-image-container">
+                                    <div class="basket-product-img">
+                                        <a href="/product/{{product.slug}}/"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
+                                    </div>
+                                </div>
+                                <div id="basket-product-info-container">
+                                    <p id="basket-product-slug-{{item.product_size_id}}" hidden>{{product.slug}}</p>
+                                    <h4 id="basket-product-name">{{product.name}}</h4>
+                                    <h4 id="basket-product-category">{{item.category}}</h4>
+                                    <h4 id="basket-product-size">Tamaño: {{item.size}}</h4>
+                                    <div class="clearfix"></div>
+                                    <div id="basket-product-price-container">
+                                        {% if product.is_sale_price_active == True %}
+                                            <span id="basket-product-sale-price" class="basket-product-sale-price">${{product.sale_price}}</span>
+                                            <h4 id="basket-product-price" class="basket-product-price-active">${{product.store_price}}</h4>
+                                        {% else %}
+                                            <h4 id="basket-product-price" class="basket-product-price">${{product.store_price}}</h4>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    
+                                    <div id="basket-product-qty-container">
+                                        <label for="" class="product-hidden-qty" hidden>{{item.product_size_id}}</label>
+                                        <h3 id="basket-qty-title">Cantidad:</h3>
+                                        <select name="basket-product-qty" value="{{item.product_size_id}}" class="update-basket_{{item.product_size_id}}_{{product.slug}}" id="basket-product-qty-select">
+                                            {% with ''|center:item.product_size_qty as range %}
+                                            {% for a in range %}
+                                                {% if forloop.counter ==  item.qty %}
+                                                    <option value="{{forloop.counter}}" selected="true">{{forloop.counter}}</option>
+                                                {% else %}
+                                                    <option value="{{forloop.counter}}">{{forloop.counter}}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% endwith %}
+                                        </select>
+                                        {{item.qty}}
+                                    </div>
+                                </div>
+                                    <div id="delete-basket_{{item.product_size_id}}_{{product.slug}}" class="basket-product-delete-container">
+                                        <h4 id="basket-product-delete-title">X</h4>
+                                    </div>
+                            </div>   
+                            
+                        {% endwith %}
+                    {% endfor %}
+                    <div id="basket-resumen-container">
+                        <div id="basket-resumen-title-container">
+                            <h2 id="basket-resumen-title">Resumen del pedido</h2>
+                        </div>
+                        <div id="basket-resumen-info-container">
+                            <div id="basket-resumen-info-costo-container">
+                                <div id="basket-resumen-costo-title-container">
+                                    <h4 id="basket-resumen-costo-title">Costo</h4>
+                                </div>
+                                <div id="basket-resumen-costo-container">
+                                    <h4 id="basket-resumen-costo">{{basket.get_total_price}}</h4>
+                                </div>
+                            </div>
+                            <div id="basket-resumen-info-discount-container">
+                                <div id="basket-resumen-discount-title-container">
+                                    <h4 id="basket-resumen-discount-title">Descuento</h4>
+                                    <input type="text" id="basket-resumen-discount-input">
+                                </div>
+                                <div id="basket-resumen-discount-container">
+                                    <h4 id="basket-resumen-discount">--</h4>
+                                </div>
+                            </div>
+                            <div id="basket-resumen-info-qty-container">
+                                <div id="basket-resumen-qty-title-container">
+                                    <h4 id="basket-resumen-qty-title">Cantidad de productos</h4>
+                                </div>
+                                <div id="basket-resumen-qty-container">
+                                    <h4 id="basket-resumen-total">{{basket|length}}</h4>
+                                </div>
+                            </div>
+                            <div id="basket-resumen-info-total-container">
+                                <div id="basket-resumen-total-title-container">
+                                    <h4 id="basket-resumen-total-title">Total</h4>
+                                </div>
+                                <div id="basket-resumen-total-container">
+                                    <h4 id="basket-resumen-total">{{basket.get_total_price}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                            <div id="empty-basket-container">
+                                <h4 id="empty-basket-title">¡Tu carrito está vacío!</h4>
+                                <h4 id="empty-basket-subtitle">Agrega productos a tu carrito para poder comprarlos</h4>
+                            </div>
+                {% endif %}
+            </div>
+            <div class="colmo-line"></div>
+        </section>
+        <!-- PRODUCT SLIDER -->
+      <section id="product-slider-section">
+        <!-- title -->
+        <div class="product-slider-container">
+           <!--<h3 class="product-slider-heading">Productos Nuevos</h3>-->
+        
+           <div class="glider-contain">
+              <div class="glider" id="glider-id">
+                    <!--Codigo para el carrusel de productos-->
+              </div>
+              
+              <div id="product-slider-previus-btn" class="glider-prev">
+                 <button aria-label="Previous" class="glider-prev">«</button>
+              </div>
+              <div id="product-slider-next-btn" class="glider-next">
+                 <button aria-label="Next" class="glider-next">»</button>
+              </div>
+              
+           </div>
+        </div>
+
+     </section>
+
+   </section>
+{% endblock body %}
+
+{% block script %}
+   <script src="{% static '/js/carousel.js' %}"></script>
+   <script src="{% static '/js/glider.min.js' %}"></script>
+   <script src="{% static '/js/basket.js' %}"></script>
+{% endblock %}

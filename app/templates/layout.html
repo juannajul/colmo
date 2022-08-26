@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="{% static 'img/COLMO-Submarca-Negro.jpg' %}">
     <link rel="icon" href="{% static 'img/COLMO-Submarca-Negro.jpg' %}">
     <!--Glider carousel css-->
@@ -43,19 +44,19 @@
 
                 <ul id="nav-menu">
                     <li>
-                        <a href="">CABALLEROS</a>
+                        <a href="{% url 'colmo:list_products' slug='caballeros' %}">CABALLEROS</a>
                     </li>
                     
                     <li>
-                        <a href="">DAMAS</a>
+                        <a href="{% url 'colmo:list_products' slug='damas' %}">DAMAS</a>
                     </li>
                     
                     <li>
-                        <a href="">ACCESORIOS</a>
+                        <a href="{% url 'colmo:list_products' slug='accesorios' %}">ACCESORIOS</a>
                     </li>
                     
                     <li>
-                        <a href="">OFERTAS</a>
+                        <a href="{% url 'colmo:list_products' slug='ofertas' %}">OFERTAS</a>
                     </li>
 
                     <li>
@@ -65,15 +66,15 @@
                 </ul>
                 <ul id="nav-menu-user">
                     <li>
-                        <input id="product-search-input" type="text" placeholder="Buscar">
+                        <input id="product-search-input" type="text" placeholder="Buscar" hidden>
                     </li> 
                     <li>
-                        <a href="" title="user" id="user-icon">
+                        <a href="{% url 'colmo:login' %}" title="user" id="user-icon">
                             <img src="{% static 'img/user.png' %}" alt="user">
                         </a>
                     </li>
                     <li>
-                        <a href="" title="basket" id="basket-icon">
+                        <a href="{% url 'colmo:basket' %}" title="basket" id="basket-icon">
                             <img src="{% static 'img/carrito-de-compras.png' %}" alt="">
                         </a>
                     </li>
@@ -91,9 +92,13 @@
         <footer>
             <div id="footer-container">
                 <div id="footer-content">
-                    <h3>Colmo Store Web</h3>
-                    <p>juannajulvillegas@gmail.com</p>
-                    <p>&copy; Copyright. All rights reserved</p>
+                    <div class="social-icons-container">
+                        <a href=""><h3 class="fa-brands fa-instagram"></h3></a>
+                        <a href=""><h3 class="fa-brands fa-whatsapp"></h3></a>
+                    </div>
+                    
+                    <h3>2022 Colmo</h3>
+                    <h3>Venezuela</h3>
                 </div>
             </div>
         </footer>

@@ -88,6 +88,7 @@ class Product(models.Model):
 
     class Meta:
         verbose_name_plural = "Products"
+        ordering = ["-created_at"]
 
             # mostrar productos por las tallas s=dsiponibles 
             #actvivar descuentos

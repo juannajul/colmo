@@ -10,3 +10,14 @@ def product_retrieve(request, slug):
     return render(request, '../templates/colmo/product_retrieve.html', {
         'product_slug': product_slug
         })
+
+def basket(request):
+    return render(request, '../templates/colmo/basket.html')
+
+def list_products(request, slug):
+    return render(request, '../templates/colmo/products.html', {
+        'slug': slug
+    })
+
+def login(request):
+    return render(request, '../templates/users/login.html')

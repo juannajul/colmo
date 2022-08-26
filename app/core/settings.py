@@ -31,7 +31,8 @@ INSTALLED_APPS = [
 
     # Third party apps
     'rest_framework',
-    'django_filters'
+    'django_filters',
+    'fontawesomefree'
 ]
 
 # User & Authentications
@@ -62,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'inventory.context_processors.basket'
             ],
         },
     },
@@ -144,3 +146,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #         'rest_framework.authentication.SessionAuthentication',
 #     ]
 # }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 12,
+}
+
+
+# Sessions
+# session time
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 # 1 week
+#SESSION_COOKIE_AGE =10
+ 
+# session browser
+#SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
