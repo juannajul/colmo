@@ -21,6 +21,15 @@ env.prod.db/
 env.prod/*
 env.dev/*
 env.prod.db/*
+.env.staging
+.env.staging/
+.env.staging/*
+.env.staning.db
+.env.staging.db/
+.env.staging/*
+.env.staging.proxy-companion
+.env.staging.proxy-companion/
+.env.staging.proxy-companion/*
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
