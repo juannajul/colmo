@@ -43,7 +43,7 @@ class ProductViewSet(
     # Filters
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
     search_fields = ('color','category__slug', 'sizes__size__id', 'made_by')
-    oridering_fields = ('created_at', 'store_price')
+    oridering_fields = ('created_at', 'store_price', 'views')
     #ordering = ('-created_at',)
     filter_fields = ('is_active', 'is_sale_price_active',)
 
@@ -86,7 +86,7 @@ class ProductViewSet(
     def product_by_category(self, request, *args, **kwargs):
         """List products by category."""
         paginator = PageNumberPagination()
-        paginator.page_size = 4
+        paginator.page_size = 12
         products = self.filter_queryset(self.get_queryset())
         result_page = paginator.paginate_queryset(products, request)
         serializer = ProductModelSerializer(result_page, many=True)
@@ -124,9 +124,9 @@ class ProductViewSet(
         """Add products to the bag."""
         basket = Basket(request)
         product = self.filter_queryset(self.get_queryset())
-        product_id = product.id
+        product_slug = product.slug
         product_size_id = self.request.data['product_size_id']
-        basket.delete(product=product_id, product_size_id=product_size_id)
+        basket.delete(product=product_slug, product_size_id=product_size_id)
         basket_qty = basket.__len__()
         basket_total = basket.get_total_price()
         response = {basket_qty, basket_total}
@@ -137,13 +137,13 @@ class ProductViewSet(
         """Update products in the bag."""
         basket = Basket(request)
         product = self.filter_queryset(self.get_queryset())
-        product_id = product.id
+        product_slug = product.slug
         product_size_id = self.request.data['product_size_id']
         qty = self.request.data['qty']
-        basket.update(product_id, product_size_id, qty)
+        basket.update(product_slug, product_size_id, qty)
         basket_qty = basket.__len__()
         basket_total = basket.get_total_price()
-        response = {basket_qty, basket_total}
+        response = {basket_qty,  basket_total}
         return Response(response, status=status.HTTP_200_OK)
     
     @action(detail=False, methods=["get"])
@@ -153,6 +153,6 @@ class ProductViewSet(
         basket.refresh_basket()
         basket_qty = basket.__len__()
         basket_total = basket.get_total_price()
-        response = {basket_qty, basket_total}
+        response = {basket_qty, f"total:${basket_total}"}
         return Response(response, status=status.HTTP_200_OK)
 

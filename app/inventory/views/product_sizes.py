@@ -5,7 +5,7 @@ from rest_framework import mixins, viewsets
 from rest_framework.response import Response
 
 # Serializers
-from inventory.serializers.product_sizes import ProductSizesModelSerializer, CreateProductSizesSerializer, UpdateProductSizesSerializer
+from inventory.serializers.product_sizes import ProductSizesModelSerializer, CreateProductSizesSerializer
 
 # Models 
 from inventory.models.products import ProductSizes
@@ -29,8 +29,6 @@ class ProductSizesViewSet(
         """Return serializer based on actions"""
         if self.action == 'create':
             return CreateProductSizesSerializer
-        if self.action == 'update':
-            return UpdateProductSizesSerializer
         return ProductSizesModelSerializer
 
 

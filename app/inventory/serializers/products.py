@@ -22,7 +22,6 @@ class ProductModelSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField(many=True)
     brand = serializers.StringRelatedField()
     sizes = ProductSizesModelSerializer(many=True)
-    
 
     class Meta:
         model = Product
@@ -40,6 +39,7 @@ class CreateProductSerializer(serializers.ModelSerializer):
     
     def validate(self, data):
         """Validate if de slug already exists. If exists modificate."""
+
         slug_name = data['slug']
         if Product.objects.filter(slug=slug_name).exists():
             id = str(uuid.uuid4())

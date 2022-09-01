@@ -81,6 +81,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    views = models.PositiveBigIntegerField(default=0)
 
     def __str__(self):
         """Return brand name"""

@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var path = window.location.pathname;
     var productSlug = path.split('/')[2];
     var paginationNumber = 1;
-    var productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`
     var topBtn = document.getElementById('list-products-banner-tops');
     var bottomsBtn = document.getElementById('list-products-banner-bottoms');
     var shoesBtn = document.getElementById('list-products-banner-shoes');
@@ -10,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var activeBottoms = false;
     var activeShoes = false;
     var nextUrl = ``;
+    if (productSlug !== 'populares'){
+        var productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`
+    } else {
+        var productUrl = `/api/products/?ordering=-views&page=${paginationNumber}`
+    }
     
     console.log(productSlug)
     // all products 
@@ -19,7 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
     topBtn.addEventListener("click", function(){
         if (activeTop === false){
             paginationNumber = 1
-            topsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=tops&page=${paginationNumber}`;
+            if (productSlug !== 'populares'){
+                var topsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=tops&page=${paginationNumber}`;
+            } else {
+                var topsUrl = `/api/products/?ordering=-views&search=tops&page=${paginationNumber}`
+            }
+            
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";
@@ -44,7 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 changeShoesBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
             }
         } else if (activeTop === true){
-            topsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+            if (productSlug !== 'populares'){
+                var topsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+            } else {
+                var topsUrl = `/api/products/?ordering=-views&page=${paginationNumber}`
+            }
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";
@@ -76,7 +89,11 @@ document.addEventListener('DOMContentLoaded', function() {
     bottomsBtn.addEventListener("click", function(){
         paginationNumber = 1
         if (activeBottoms === false){
-            bottomsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=bottoms&page=${paginationNumber}`;
+            if (productSlug !== 'populares'){
+                var bottomsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=bottoms&page=${paginationNumber}`;
+            } else {
+                var bottomsUrl = `/api/products/?ordering=-views&search=bottoms&page=${paginationNumber}`
+            }
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";
@@ -101,7 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 changeTopBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
             }
         } else if (activeBottoms === true) {
-            bottomsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+            if (productSlug !== 'populares'){
+                var bottomsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+            } else {
+                var bottomsUrl = `/api/products/?ordering=-views&page=${paginationNumber}`
+            }
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";
@@ -133,7 +154,11 @@ document.addEventListener('DOMContentLoaded', function() {
     shoesBtn.addEventListener("click", function(){
         paginationNumber = 1
         if (activeShoes === false){
-            shoesUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=shoes&page=${paginationNumber}`;
+            if (productSlug !== 'populares'){
+                var shoesUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=shoes&page=${paginationNumber}`;
+            } else {
+                var shoesUrl = `/api/products/?ordering=-views&search=shoes&page=${paginationNumber}`
+            }
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";
@@ -158,7 +183,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 changeTopBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
             }
         } else if (activeShoes === true) {
-            shoesUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+            if (productSlug !== 'populares'){
+                var shoesUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+            } else {
+                var shoesUrl = `/api/products/?ordering=-views&page=${paginationNumber}`
+            }
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";
@@ -194,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
     nextUrl = nextBtnUrl.className;
     console.log(`sdffsd${nextUrl}`);
         if (activeTop === true){
-            topsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=tops&page=${paginationNumber}`;
+            //topsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=tops&page=${paginationNumber}`;
             if (nextUrl !== 'null') {
                 var deleteProducts = document.querySelectorAll('.list-product-box');
                 deleteProducts.forEach(product =>{
@@ -205,8 +234,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.log('no next url');
             }
+            smoothScroll('#list-products-banner-tops', 200)
         } else if (activeBottoms === true){
-            bottomsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=bottoms&page=${paginationNumber}`;
+            //bottomsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=bottoms&page=${paginationNumber}`;
             if (nextUrl !== 'null') {
                 var deleteProducts = document.querySelectorAll('.list-product-box');
                 deleteProducts.forEach(product =>{
@@ -217,8 +247,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.log('no next url');
             }
+            smoothScroll('#list-products-banner-tops', 200)
         } else if (activeShoes === true){
-            shoesUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=shoes&page=${paginationNumber}`;
+            //shoesUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=shoes&page=${paginationNumber}`;
             if (nextUrl !== 'null') {
                 var deleteProducts = document.querySelectorAll('.list-product-box');
                 deleteProducts.forEach(product =>{
@@ -229,8 +260,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.log('no next url');
             }
+            smoothScroll('#list-products-banner-tops', 200)
         } else {
-            productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+            //productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
             if (nextUrl !== 'null') {
                 var deleteProducts = document.querySelectorAll('.list-product-box');
                 deleteProducts.forEach(product =>{
@@ -241,6 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.log('no next url');
             }
+            smoothScroll('#list-products-banner-tops', 200)
         }
     });
 
@@ -251,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
         prevUrl = prevBtnUrl.className;
         console.log(`prev ${prevUrl}`);
             if (activeTop === true){
-                topsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=tops&page=${paginationNumber}`;
+                //topsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=tops&page=${paginationNumber}`;
                 if (prevUrl !== 'null') {
                     var deleteProducts = document.querySelectorAll('.list-product-box');
                     deleteProducts.forEach(product =>{
@@ -262,8 +295,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     console.log('no prev url');
                 }
+                smoothScroll('#list-products-banner-tops', 200)
             } else if (activeBottoms === true){
-                bottomsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=bottoms&page=${paginationNumber}`;
+                //bottomsUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=bottoms&page=${paginationNumber}`;
                 if (prevUrl !== 'null') {
                     var deleteProducts = document.querySelectorAll('.list-product-box');
                     deleteProducts.forEach(product =>{
@@ -274,8 +308,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     console.log('no prev url');
                 }
+                smoothScroll('#list-products-banner-tops', 200)
             } else if (activeShoes === true){
-                shoesUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=shoes&page=${paginationNumber}`;
+                //shoesUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&search=shoes&page=${paginationNumber}`;
                 if (prevUrl !== 'null') {
                     var deleteProducts = document.querySelectorAll('.list-product-box');
                     deleteProducts.forEach(product =>{
@@ -286,8 +321,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     console.log('no prev url');
                 }
+                smoothScroll('#list-products-banner-tops', 200)
             } else {
-                productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+                //productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
                 if (prevUrl !== 'null') {
                     var deleteProducts = document.querySelectorAll('.list-product-box');
                     deleteProducts.forEach(product =>{
@@ -298,6 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     console.log('no prev url');
                 }
+                smoothScroll('#list-products-banner-tops', 200)
             }
         });
 });
@@ -368,5 +405,26 @@ function listProduts(productUrl){
         });
 }
 
-
+function smoothScroll(target, duration){
+    var target = document.querySelector(target);
+    var targetPosition = target.getBoundingClientRect().top;
+    var startPosition = window.pageYOffset;
+    var distance = targetPosition ;
+    var startTime = null;
+    function animation(currentTime){
+        if(startTime == null) startTime = currentTime;
+        var timeElapsed = currentTime - startTime;
+        var run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(startPosition, run);
+        if(timeElapsed < duration) requestAnimationFrame(animation);
+    }  
+    
+    function ease(t, b, c, d){
+        t /= d /2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2)- 1) + b;
+    }
+    requestAnimationFrame(animation);
+}
 

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block body %}
+   <!--PRODUCT CONTAINER-->
+   <section id="index-content">
+      {% if master_user == request.user %}
+      <section id="confirmation-container">
+        <div class="item-confirmation-container">
+            
+        </div>
+      </section>
+      {% else %}
+        <h2>Usuario no autorizado</h2>
+      {% endif %}
+
+      
+
+   </section>
+{% endblock body %}
+    
+{% block script %}
+    <script src="{% static '/js/product_confirmation.js' %}"></script>
+{% endblock %}

@@ -18,7 +18,7 @@
                         <h4 class="basket-total-qty">Total (0 Productos)</h4>
                     {% endif %}
                 {% endwith %}
-                <h4 class="basket-total-price">${{basket.get_total_price}}</h4> 
+                <h4 class="basket-total-price" id="basket-total-price">${{basket.get_total_price}}</h4> 
                 
             </div>
             <div class="basket-info-container">
@@ -31,6 +31,9 @@
                 {% if basket %}
                     {% for item in basket %}
                         {% with product=item.product %}
+                        <label class="ws-msg" hidden>
+                            {{product.name}}: SKU: {{product.slug}} {% if product.is_sale_price_active == True %} precio: ${{product.sale_price}} {% else %} precio: ${{product.store_price}} {% endif %} cantidad: {{item.qty}}.
+                        </label>
                             <div id="basket-product-container">
                                 <div id="basket-product-image-container">
                                     <div class="basket-product-img">
@@ -38,10 +41,11 @@
                                     </div>
                                 </div>
                                 <div id="basket-product-info-container">
-                                    <p id="basket-product-slug-{{item.product_size_id}}" hidden>{{product.slug}}</p>
+                                    <label id="basket-product-slug-{{item.product_size_id}}-id" class="basket-hidden-product-slug" hidden>{{product.slug}}</label>
+                                    <label id="basket-product-slug-{{item.product_size_id}}-id" class="basket-hidden-product-slug-id" hidden>{{product.slug}}_{{item.product_size_id}}</label>
                                     <h4 id="basket-product-name">{{product.name}}</h4>
                                     <h4 id="basket-product-category">{{item.category}}</h4>
-                                    <h4 id="basket-product-size">Tamaño: {{item.size}}</h4>
+                                    <h4 id="basket-product-size" class="basket-product-size-{{item.product_size_id}}-{{product.slug}}">Tamaño: {{item.size}}</h4>
                                     <div class="clearfix"></div>
                                     <div id="basket-product-price-container">
                                         {% if product.is_sale_price_active == True %}
@@ -50,11 +54,9 @@
                                         {% else %}
                                             <h4 id="basket-product-price" class="basket-product-price">${{product.store_price}}</h4>
                                         {% endif %}
-                                        
                                     </div>
-                                    
                                     <div id="basket-product-qty-container">
-                                        <label for="" class="product-hidden-qty" hidden>{{item.product_size_id}}</label>
+                                        <label for="" class="product-hidden-qty" id="product-hidden-qty-{{product.slug}}-id" hidden>{{item.product_size_id}}</label>
                                         <h3 id="basket-qty-title">Cantidad:</h3>
                                         <select name="basket-product-qty" value="{{item.product_size_id}}" class="update-basket_{{item.product_size_id}}_{{product.slug}}" id="basket-product-qty-select">
                                             {% with ''|center:item.product_size_qty as range %}
@@ -67,7 +69,7 @@
                                             {% endfor %}
                                             {% endwith %}
                                         </select>
-                                        {{item.qty}}
+                                        <!--{{item.qty}}-->
                                     </div>
                                 </div>
                                     <div id="delete-basket_{{item.product_size_id}}_{{product.slug}}" class="basket-product-delete-container">
@@ -87,16 +89,19 @@
                                     <h4 id="basket-resumen-costo-title">Costo</h4>
                                 </div>
                                 <div id="basket-resumen-costo-container">
-                                    <h4 id="basket-resumen-costo">{{basket.get_total_price}}</h4>
+                                    <span id="resumen-basket-usd">$</span><h4 id="basket-resumen-costo">{{basket.get_total_price}}</h4>
                                 </div>
                             </div>
                             <div id="basket-resumen-info-discount-container">
                                 <div id="basket-resumen-discount-title-container">
                                     <h4 id="basket-resumen-discount-title">Descuento</h4>
-                                    <input type="text" id="basket-resumen-discount-input">
+                                    <form action="" id="discount-form">
+                                        <input type="text" id="basket-resumen-discount-input">
+                                    </form>
                                 </div>
                                 <div id="basket-resumen-discount-container">
                                     <h4 id="basket-resumen-discount">--</h4>
+                                    <div id="discount-box"><h4 id="discount-box-title">COLMO10</h4> <span id="delete-discount-btn">X</span></div>
                                 </div>
                             </div>
                             <div id="basket-resumen-info-qty-container">
@@ -104,7 +109,7 @@
                                     <h4 id="basket-resumen-qty-title">Cantidad de productos</h4>
                                 </div>
                                 <div id="basket-resumen-qty-container">
-                                    <h4 id="basket-resumen-total">{{basket|length}}</h4>
+                                    <h4 id="basket-resumen-total-qty">{{basket|length}}</h4>
                                 </div>
                             </div>
                             <div id="basket-resumen-info-total-container">
@@ -112,8 +117,11 @@
                                     <h4 id="basket-resumen-total-title">Total</h4>
                                 </div>
                                 <div id="basket-resumen-total-container">
-                                    <h4 id="basket-resumen-total">{{basket.get_total_price}}</h4>
+                                    <span id="resumen-basket-usd">$</span><h4 id="basket-resumen-total-price">{{basket.get_total_price}}</h4>
                                 </div>
+                            </div>
+                            <div id="basket-resumen-checkout-btn-container">
+                                <button id="basket-resumen-checkout-btn">Ir a pagar</button>
                             </div>
                         </div>
                     </div>
@@ -130,7 +138,7 @@
       <section id="product-slider-section">
         <!-- title -->
         <div class="product-slider-container">
-           <!--<h3 class="product-slider-heading">Productos Nuevos</h3>-->
+           <h3 class="product-slider-heading">Colmo - Recomendaciones</h3>
         
            <div class="glider-contain">
               <div class="glider" id="glider-id">

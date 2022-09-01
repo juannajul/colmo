@@ -20,12 +20,12 @@ class Basket():
         Adding and updating the users basket session data
         """
         print(product)
-        product_id = str(product['id']) 
+        product_slug = str(product['slug']) 
         id_product_size = str(product_size_id)
         product_cat = str(product_category)
         product_size = ProductSizes.objects.get(id=id_product_size)
         product_size_qty = int(product_size.qty)
-        p_id = str(product_id + '-' + id_product_size)
+        p_id = str(product_slug + '_' + id_product_size)
         if p_id in self.basket:
             if self.basket[p_id]['qty'] < product_size_qty:
                 self.basket[p_id]['qty'] += 1
@@ -44,15 +44,15 @@ class Basket():
             }
         else:
             self.basket[p_id] = {
-             'price': str(product['store_price']),
-             'sale_price': str(product['sale_price']),
-             'is_sale_price_active': product['is_sale_price_active'],
-             'qty': 1, 
-             'product_category': str(product_cat),
-             'size': str(size),
-             'product_size_qty': product_size_qty,
-             'product_size_id': id_product_size,
-             }
+            'price': str(product['store_price']),
+            'sale_price': str(product['sale_price']),
+            'is_sale_price_active': product['is_sale_price_active'],
+            'qty': 1, 
+            'product_category': str(product_cat),
+            'size': str(size),
+            'product_size_qty': product_size_qty,
+            'product_size_id': id_product_size,
+            }
         self.save()
 
     def __iter__(self):
@@ -63,16 +63,16 @@ class Basket():
         product_ids = self.basket.keys()
         p_id = []
         for product_id in product_ids:
-            product_id = product_id.split('-')
-            p_id.append(int(product_id[0]))
-        products = Product.objects.filter(id__in=p_id)
-        basket = self.basket.copy()
+            product_id = product_id.split('_')
+            p_id.append(str(product_id[0]))
+        products = Product.objects.filter(slug__in=p_id)
+        basket = self.basket.copy() 
 
         for product in products:
             for product_id in product_ids:
-                product_id = product_id.split('-')
-                if product_id[0] == str(product.id):
-                    basket[f'{product_id[0]}-{product_id[1]}']['product'] = product
+                product_id = product_id.split('_')
+                if product_id[0] == str(product.slug):
+                    basket[f'{product_id[0]}_{product_id[1]}']['product'] = product
         for item in basket.values():
             #print(item)
             item['price'] = Decimal(item['price'])
@@ -100,9 +100,9 @@ class Basket():
         """
         Delete item from session data
         """
-        product_id = str(product)
+        product_slug = str(product)
         product_size = str(product_size_id)
-        product_delete_id = str(product_id + '-' + product_size)
+        product_delete_id = str(product_slug + '_' + product_size)
 
         if product_delete_id in self.basket:
             del self.basket[product_delete_id]
@@ -113,9 +113,9 @@ class Basket():
         Update values in session data
         """
         
-        product_id = str(product)
+        product_slug = str(product)
         product_size = str(product_size_id)
-        product_update_id = str(product_id + '-' + product_size)
+        product_update_id = str(product_slug + '_' + product_size)
 
         if product_update_id in self.basket:
             self.basket[product_update_id]['qty'] = int(qty)
@@ -129,17 +129,22 @@ class Basket():
         print("refresh_basket")
         print(self.basket.keys())
         basket_keys = self.basket.keys()
+        del_products = []
         for key in basket_keys:
-            product_id = key.split('-')
+            product_id = key.split('_')
             product_size = ProductSizes.objects.get(id=product_id[1])
             product_size_qty = int(product_size.qty)
             self.basket[key]['product_size_qty'] = product_size_qty
             if self.basket[key]['qty'] > product_size_qty:
                 self.basket[key]['qty'] = product_size_qty
-            product = Product.objects.get(id=product_id[0])
+            product = Product.objects.get(slug=product_id[0])
             self.basket[key]['price'] = str(product.store_price)
             self.basket[key]['sale_price'] = str(product.sale_price)
             self.basket[key]['is_sale_price_active'] = product.is_sale_price_active
+            if product_size_qty < 1:
+                del_products.append(key)
+        for key in del_products:
+            del self.basket[key]
         self.save()
 
     def save(self):

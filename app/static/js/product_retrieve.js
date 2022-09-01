@@ -96,7 +96,23 @@ function productRetrieve(productSlug){
             
             // Product sizes
             productSizes(product)
-        })
+            // product views
+            var productViews = product.views;
+            fetch(`/api/products/${productSlug}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": getCookie("csrftoken"),
+                },
+                body: JSON.stringify({
+                    "views": productViews + 1
+                })
+                })
+                .then(response => response.json())
+                .then(product => {
+                    console.log(product.views)
+                });
+        });    
 }
 
 function productSizes(product){
@@ -108,12 +124,14 @@ function productSizes(product){
             .then(size => {
                 var productSizesId = `${product_size.id}`;
                 var productQty = `${product_size.qty}`;
-                product_sizes.push({
-                    "product_size_id":productSizesId,
-                    "qty":productQty,
-                    "size_id": `${size.id}`,
-                    "size": `${size.size}`
-                    })
+                if (parseInt(productQty) > 0){
+                    product_sizes.push({
+                        "product_size_id":productSizesId,
+                        "qty":productQty,
+                        "size_id": `${size.id}`,
+                        "size": `${size.size}`
+                        })
+                    }
                 productSizesContent = document.querySelector("#product-sizes-content");
                 productSizesContent.innerHTML =  product_sizes.map(function (size) {
                     return `

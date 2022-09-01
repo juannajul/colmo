@@ -32,6 +32,36 @@ function getRandomProducts(){
         })
     }
 
+function getMoreSearchedProducts(){
+  fetch(`/api/products/?ordering=-views`)
+        .then(response => response.json())
+        .then(products =>{
+            //console.log(products)
+            products.results.forEach(product => {
+                const productBox = document.createElement("DIV")
+                productBox.classList.add("product-box")
+                productBox.innerHTML = 
+                `<div class="product-img-container">
+                    <div class="product-img">
+                        <a href="/product/${product.slug}/"><img src="${product.image}" alt=""></a>
+                    </div>
+                </div>
+                <div class="product-box-text">
+                    <div class="product-store-price">
+                        <span class="product-price">$${product.store_price}</span>
+                    </div>
+                <div class="product-name">
+                    ${product.name}
+                </div>
+                <div class="product-category">
+                    <span>${product.category}</span>
+                </div>`
+                document.getElementById("glider-id").appendChild(productBox)
+            });
+            gliderFunction()
+        })
+}
+
 function gliderFunction(){
     //glider
     new Glider(document.querySelector('.glider'), {
