@@ -3,9 +3,6 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -131,7 +128,7 @@ STATICFILES_DIRS = (
 # Media files 
 
 MEDIA_URL = "/mediafiles/"
-MEDIA_ROOT = BASE_DIR / "mediafiles"
+MEDIA_ROOT = BASE_DIR/"mediafiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -152,7 +149,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 12,
 }
 
-
 # Sessions
 # session time
 
@@ -161,6 +157,5 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
  
 # session browser
 # SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
-
 # HTTPS Proxy
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
