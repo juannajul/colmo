@@ -3,6 +3,7 @@
 from distutils.command.upload import upload
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.dispatch import receiver
 
 # Models
 from users.models.users import User
@@ -86,6 +87,20 @@ class Product(models.Model):
     def __str__(self):
         """Return brand name"""
         return self.name
+
+@receiver(models.signals.post_delete, sender=Product)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding `Document` object is deleted.
+    """
+    if instance.image:
+        instance.image.delete(False)
+    if instance.image2:
+        instance.image2.delete(False)
+    if instance.image3:
+        instance.image3.delete(False)
+
 
     class Meta:
         verbose_name_plural = "Products"

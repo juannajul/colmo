@@ -161,3 +161,6 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 # 1 week
  
 # session browser
 #SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
+
+# HTTPS Proxy
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
