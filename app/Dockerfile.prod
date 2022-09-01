@@ -21,10 +21,14 @@ RUN pip install --upgrade pip
 RUN pip install flake8==3.9.2
 COPY . .
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN flake8 --ignore=E501,F401 ./core
 =======
 #RUN flake8 --ignore=E501,F401 ./
 >>>>>>> f1acc2bdd57841677a83fbe64c9bf5511ea56fcf
+=======
+# RUN flake8 --ignore=E501,F401 ./
+>>>>>>> 005cb6736be4d1774ec1d62e09dcb8c62a5cbe2b
 
 # install dependencies
 COPY ./requirements.txt .
