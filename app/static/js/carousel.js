@@ -18,7 +18,8 @@ function getRandomProducts(){
                 </div>
                 <div class="product-box-text">
                     <div class="product-store-price">
-                        <span class="product-price">$${product.store_price}</span>
+                        <span id="carousel-product-sale-price-${product.slug}" class=" ">$${product.sale_price}</span>
+                        <span id="carousel-product-price-${product.slug}" class=" carousel-product-sale-store-price">$${product.store_price}</span>
                     </div>
                 <div class="product-name">
                     ${product.name}
@@ -27,6 +28,17 @@ function getRandomProducts(){
                     <span>${product.category}</span>
                 </div>`
                 document.getElementById("glider-id").appendChild(productBox)
+                if (product.is_sale_price_active === true) {
+                    let salePrice = document.getElementById(`carousel-product-sale-price-${product.slug}`);
+                    let storePrice = document.getElementById(`carousel-product-price-${product.slug}`);
+                    salePrice.classList.add("carousel-product-sale-price");
+                    storePrice.classList.add("carousel-product-sale-store-price")
+                } else if (product.is_sale_price_active === false) {
+                    let salePrice = document.getElementById(`carousel-product-sale-price-${product.slug}`);
+                    let storePrice = document.getElementById(`carousel-product-price-${product.slug}`);
+                    salePrice.style.display = "none";
+                    storePrice.classList.add("carousel-product-price")
+                } 
             });
             gliderFunction()
         })
@@ -48,7 +60,8 @@ function getMoreSearchedProducts(){
                 </div>
                 <div class="product-box-text">
                     <div class="product-store-price">
-                        <span class="product-price">$${product.store_price}</span>
+                        <span id="carousel-product-sale-price-${product.slug}" class=" ">$${product.sale_price}</span>
+                        <span id="carousel-product-price-${product.slug}" class="product-price carousel-product-sale-store-price">$${product.store_price}</span>
                     </div>
                 <div class="product-name">
                     ${product.name}

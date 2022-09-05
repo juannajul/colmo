@@ -362,14 +362,29 @@ function listProduts(productUrl){
                     </div>
                     <a href="/product/${product.slug}/">
                     <div id="list-product-info-container">
-                        <h4 class="list-product-price">$${product.store_price}</h4>
-                        <h4 class="list-product-name">${product.name}</h4>
+                        <div id="list-product-price-container">
+                            <span id="list-product-sale-price-${product.slug}" class=" ">$${product.sale_price}</span>
+                            <h4 id="list-product-price-${product.slug}" class="list-product-price list-product-sale-store-price">$${product.store_price}</h4>
+                        </div>
+                            <h4 class="list-product-name">${product.name}</h4>
                         <h4 class="list-product-category">${productCategories}</h4>
                     </div>
                     </a>
                 </div>`
+                
                 document.getElementById("list-products-container").appendChild(productContainer)
-
+                if (product.is_sale_price_active === true) {
+                    let salePrice = document.getElementById(`list-product-sale-price-${product.slug}`);
+                    let storePrice = document.getElementById(`list-product-price-${product.slug}`);
+                    salePrice.classList.add("list-product-sale-price");
+                    storePrice.classList.add("list-product-sale-store-price")
+                } else if (product.is_sale_price_active === false) {
+                    let salePrice = document.getElementById(`list-product-sale-price-${product.slug}`);
+                    let storePrice = document.getElementById(`list-product-price-${product.slug}`);
+                    salePrice.style.display = "none";
+                    storePrice.classList.add("list-product-price")
+                    storePrice.classList.remove("list-product-sale-store-price")
+                }
             });
             prevPagBtn = document.querySelector('#pagination-btn-prev');
             nextPagBtn = document.querySelector('#pagination-btn-next');
