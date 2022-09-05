@@ -237,24 +237,24 @@ function checkoutConfirmation(){
                                 })    
                     });
             }) 
-            
+            window.setTimeout(()=>{
+                let checkoutMsg = `${confirmation.sold_number_code }. Quisiera comprar estos productos: `
+                let m = []
+                let msgs = document.querySelectorAll('.ws-msg');
+                msgs.forEach(ms =>{
+                    m.push(ms)
+                })
+                console.log(msgs)
+                var productMsg = m.map(function (msg) {
+                    let nMsg = `${msg.innerHTML}`
+                    return `\n ${nMsg.trim()}` 
+                }).join(' ')
+                let newMsg = checkoutMsg.concat(' ', productMsg.trim()) + ' ' + 'total: $' + totalAmount;
+                console.log(newMsg )
+                window.location.href = `https://api.whatsapp.com/send?phone=584125553868&text=${newMsg}`
+            }, 500)
         })
-        window.setTimeout(()=>{
-            let checkoutMsg = "Quisiera comprar estos productos: "
-            let m = []
-            let msgs = document.querySelectorAll('.ws-msg');
-            msgs.forEach(ms =>{
-                m.push(ms)
-            })
-            console.log(msgs)
-            var productMsg = m.map(function (msg) {
-                let nMsg = `${msg.innerHTML}`
-                return `\n ${nMsg.trim()}` 
-            }).join(' ')
-            let newMsg = checkoutMsg.concat(' ', productMsg.trim()) + ' ' + 'total: $' + totalAmount
-            console.log(newMsg )
-            window.location.href = `https://api.whatsapp.com/send?phone=584123888535&text=${newMsg}`
-        }, 500)
+        
    
 }
 
