@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(productSlug)
     // all products 
     listProduts(productUrl);
+    filterBySize();
 
     //tops products
     topBtn.addEventListener("click", function(){
@@ -443,3 +444,19 @@ function smoothScroll(target, duration){
     requestAnimationFrame(animation);
 }
 
+function filterBySize(){
+    fetch(`/api/sizes`)
+        .then(response => response.json())
+        .then(data =>{
+            sizes = data.results;
+            console.log(sizes)
+           /* sizes.forEach(size => {
+                const sizeContainer = document.createElement("DIV")
+                sizeContainer.classList.add("filter-size-container")
+                sizeContainer.innerHTML = 
+                `<input type="checkbox" id="size-${size.id}" name="size" value="${size.size}">
+                <label for="size-${size.id}">${size.size}</label>`
+                document.getElementById("list-products-filters-container").appendChild(sizeContainer)
+            });*/
+        })
+}

@@ -11,17 +11,18 @@ class SoldProductConfirmation(models.Model):
     confirmation =models.BooleanField(default=False)
     finished = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    def str(self):
-        return self.sold_number_slug
+    
+    def __str__(self):
+        return f'Confirmation {self.sold_number_code}'
 
 class SoldProduct(models.Model):
     """Sold product model."""
     name = models.CharField(max_length=255, default='', blank=True)
     slug = models.CharField(max_length=255, default='', blank=True)
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, related_name="product_mail")
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, related_name="product_sold")
     size = models.CharField(max_length=54, default='', blank=True)
     sold_confirmation = models.ForeignKey(SoldProductConfirmation, on_delete=models.CASCADE, related_name="sold_product_confirmation")
-    product_size = models.ForeignKey(ProductSizes, on_delete=models.DO_NOTHING, related_name="product_size_mail")
+    product_size = models.ForeignKey(ProductSizes, on_delete=models.DO_NOTHING, related_name="product_size_sold")
     qty = models.PositiveIntegerField(default=0, blank=False)
 
     def __str__(self):

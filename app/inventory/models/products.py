@@ -56,8 +56,8 @@ class ProductSizes(models.Model):
 
     def __str__(self):
         """Return brand name"""
-        return f'{self.id} | Size: {self.size}, Qty: {self.qty}, {self.item_product_sizes}'
-
+        return f'{self.id} | Size: {self.size}, Qty: {self.qty}'
+        #{self.item_product_sizes}
     class Meta:
         verbose_name_plural = "Product sizes" 
 
@@ -87,6 +87,7 @@ class Product(models.Model):
     def __str__(self):
         """Return brand name"""
         return self.name
+    
 
 @receiver(models.signals.post_delete, sender=Product)
 def auto_delete_file_on_delete(sender, instance, **kwargs):
