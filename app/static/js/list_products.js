@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
     listProduts(productUrl);
     filterBySize();
 
+    const filtersBtn = document.getElementById('list-products-filters-btn-filters');
+    filtersBtn.addEventListener('click', () => {
+        const filtersDesplegable = document.getElementById('list-products-filters-desplegable');
+        filtersDesplegable.style.display = "block"
+        console.log("SADfsdaf")
+    });
+
     //tops products
     topBtn.addEventListener("click", function(){
         if (activeTop === false){
@@ -450,13 +457,13 @@ function filterBySize(){
         .then(data =>{
             sizes = data.results;
             console.log(sizes)
-           /* sizes.forEach(size => {
+            sizes.forEach(size => {
                 const sizeContainer = document.createElement("DIV")
-                sizeContainer.classList.add("filter-size-container")
+                sizeContainer.classList.add("list-products-filter-size-box")
                 sizeContainer.innerHTML = 
-                `<input type="checkbox" id="size-${size.id}" name="size" value="${size.size}">
-                <label for="size-${size.id}">${size.size}</label>`
-                document.getElementById("list-products-filters-container").appendChild(sizeContainer)
-            });*/
+                `<input type="checkbox" id="size-${size.id}" class="list-products-filter-size-radio" name="size" value="${size.size}">
+                <label for="size-${size.id}" class="list-products-filter-size-title">${size.size}</label>`
+                document.getElementById("list-products-filters-sizes-btns-container").appendChild(sizeContainer)
+            });
         })
 }

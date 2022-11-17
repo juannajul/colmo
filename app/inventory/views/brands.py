@@ -1,4 +1,4 @@
-"""Product sizes views."""
+"""Brand views."""
 
 # Django rest framework
 from rest_framework import mixins, viewsets
