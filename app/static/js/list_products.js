@@ -21,10 +21,23 @@ document.addEventListener('DOMContentLoaded', function() {
     filterBySize();
 
     const filtersBtn = document.getElementById('list-products-filters-btn-filters');
+    var filtersIsOpen = false
     filtersBtn.addEventListener('click', () => {
         const filtersDesplegable = document.getElementById('list-products-filters-desplegable');
-        filtersDesplegable.style.display = "block"
-        console.log("SADfsdaf")
+        if (filtersIsOpen == false){
+            filtersIsOpen = true
+            //filtersDesplegable.style.display = "block"
+            filtersDesplegable.classList.add('open-desplegable');
+        }
+    });
+    
+    const closeFiltersBtn = document.getElementById('close-filters-btn');
+    closeFiltersBtn.addEventListener('click', () => {
+        const filtersDesplegable = document.getElementById('list-products-filters-desplegable');
+        if (filtersIsOpen){
+            filtersIsOpen = false
+            filtersDesplegable.classList.remove('open-desplegable');
+        }
     });
 
     //tops products

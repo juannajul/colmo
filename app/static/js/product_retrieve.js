@@ -136,8 +136,8 @@ function productSizes(product){
                 productSizesContent.innerHTML =  product_sizes.map(function (size) {
                     return `
                     <div class="product-size-box">
-                        <input type="radio" id="product-filter-size-radio-${size.product_size_id}" class="product-size-radio" name="product-size-radio" value="${size.product_size_id}" >
-                        <label class="product-size-title" id="product-filter-title-size-${size.product_size_id}" value="${size.size}" for="${size.product_size_id}">${size.size}</label>
+                        <input type="radio" id="${size.product_size_id}" class="product-size-radio" name="product-size-radio" value="${size.product_size_id}" >
+                        <label class="product-size-title" id="p-size${size.product_size_id}" value="${size.size}" for="${size.product_size_id}">${size.size}</label>
                     </div>
                     `}).join('');
                 })

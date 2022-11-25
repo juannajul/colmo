@@ -77,6 +77,11 @@
                         <a href="{% url 'colmo:basket' %}" title="basket" id="basket-icon">
                             <img src="{% static 'img/carritoblue.png' %}" alt="">
                         </a>
+                        {% if basket %}
+                            <div id="basket-count">
+                                <h3 id="basket-count-title">{{ basket|length }}</h3>
+                            </div>
+                        {% endif %}
                     </li>
                     
                 </ul>
