@@ -42,7 +42,8 @@ class ProductViewSet(
 
     # Filters
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
-    search_fields = ('color','category__slug', 'sizes__size__id', 'made_by')
+    search_fields = ('=color','=category__slug', '=sizes__size__size', '=made_by')
+    #search_fields = ('sizes__size__size',)
     oridering_fields = ('created_at', 'store_price', 'views')
     #ordering = ('-created_at',)
     filter_fields = ('is_active', 'is_sale_price_active',)
@@ -71,6 +72,8 @@ class ProductViewSet(
             else:
                 category = Category.objects.get(slug=self.kwargs['slug'])
                 return Product.objects.filter(category=category, is_active=True)
+        if self.action == 'list_random_products':
+            return Product.objects.order_by('?')
         if self.action == 'add_product_basket':
             product = Product.objects.get(slug=self.kwargs['slug'], is_active=True)
             return product
@@ -98,7 +101,15 @@ class ProductViewSet(
         serializer = ProductModelSerializer(products, many=True).data
         return Response(serializer, status=status.HTTP_200_OK)
         """
-       
+    
+    @action(detail=False, methods=['get'])
+    def list_random_products(self, request, *args, **kwargs):
+        paginator = PageNumberPagination()
+        paginator.page_size = 15
+        products = self.filter_queryset(self.get_queryset())
+        result_page = paginator.paginate_queryset(products, request)
+        serializer = ProductModelSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     @action(detail=True, methods=["post"])
     def add_product_basket(self, request, *args, **kwargs):
@@ -108,7 +119,6 @@ class ProductViewSet(
         product_size_id = self.request.data['product_size_id']
         size = self.request.data['size']
         #print(request.data)
-        
         serializer = ProductModelSerializer(product).data
         #print(product.category)
         product_category = " ".join(serializer['category'])

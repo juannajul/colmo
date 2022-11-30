@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function getRandomProducts(){
-    fetch(`/api/products/?ordering=-created_at&limit=15`)
+    fetch(`/api/products/list_random_products/`)
         .then(response => response.json())
         .then(products =>{
             //console.log(products)

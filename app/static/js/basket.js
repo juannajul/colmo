@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     )})
     
-
     // submit disconut
     var discountForm = document.querySelector('#discount-form');
     discountForm.onsubmit = function(){
@@ -262,7 +261,6 @@ function deleteEmptyQty(){
     let changeSelect = document.querySelectorAll('#basket-product-qty-select');
     changeSelect.forEach(select =>{
         let qty = select.value;
-        console.log("qui")
         console.log(parseInt(qty))
         if (parseInt(qty) == 'NaN') {
             console.log("Eliminar")

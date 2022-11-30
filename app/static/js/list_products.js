@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var activeTop = false;
     var activeBottoms = false;
     var activeShoes = false;
+    localStorage.setItem('filterUrl',  `/api/products/?ordering=-views&page=${paginationNumber}`);
     var nextUrl = ``;
     if (productSlug !== 'populares'){
         var productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`
@@ -15,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         var productUrl = `/api/products/?ordering=-views&page=${paginationNumber}`
     }
     
-    console.log(productSlug)
     // all products 
     listProduts(productUrl);
     filterBySize();
@@ -26,14 +26,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const filtersDesplegable = document.getElementById('list-products-filters-desplegable');
         if (filtersIsOpen == false){
             filtersIsOpen = true
-            //filtersDesplegable.style.display = "block"
             filtersDesplegable.classList.add('open-desplegable');
         }
     });
-    
-    const closeFiltersBtn = document.getElementById('close-filters-btn');
+
+    const closeFiltersBtn = document.getElementById('list-products-close-filters-btn');
     closeFiltersBtn.addEventListener('click', () => {
         const filtersDesplegable = document.getElementById('list-products-filters-desplegable');
+        if (filtersIsOpen){
+            filtersIsOpen = false
+            filtersDesplegable.classList.remove('open-desplegable');
+        }
+    });
+    
+    const saveFiltersBtn = document.getElementById('save-filters-btn');
+    saveFiltersBtn.addEventListener('click', () => {
+        const filtersDesplegable = document.getElementById('list-products-filters-desplegable');
+        getFilterProducts()
+        //filterProductsBySize()
         if (filtersIsOpen){
             filtersIsOpen = false
             filtersDesplegable.classList.remove('open-desplegable');
@@ -104,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         listProduts(topsUrl);
+        localStorage.setItem('filterUrl', topsUrl);
     });
 
     // bottoms products
@@ -169,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         listProduts(bottomsUrl);
+        localStorage.setItem('filterUrl', bottomsUrl);
     });
 
     // shoes products
@@ -234,6 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         listProduts(shoesUrl);
+        localStorage.setItem('filterUrl', shoesUrl);
     });
 
     // pagination
@@ -358,11 +371,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 smoothScroll('#list-products-banner-tops', 200)
             }
         });
+
 });
 
 
 function listProduts(productUrl){
-    console.log(productUrl)
     fetch(productUrl)
         .then(response => response.json())
         .then(products =>{
@@ -469,14 +482,53 @@ function filterBySize(){
         .then(response => response.json())
         .then(data =>{
             sizes = data.results;
-            console.log(sizes)
             sizes.forEach(size => {
                 const sizeContainer = document.createElement("DIV")
                 sizeContainer.classList.add("list-products-filter-size-box")
                 sizeContainer.innerHTML = 
-                `<input type="checkbox" id="size-${size.id}" class="list-products-filter-size-radio" name="size" value="${size.size}">
+                `<input type="radio" id="size-${size.id}" class="list-products-filter-size-radio" name="size" value="${size.size}">
                 <label for="size-${size.id}" class="list-products-filter-size-title">${size.size}</label>`
                 document.getElementById("list-products-filters-sizes-btns-container").appendChild(sizeContainer)
             });
         })
+}
+
+async function filterProductsBySize(){
+    console.log("entra")
+        console.log("entra2")
+        let filter_url = localStorage.getItem('filterUrl');
+        let newFilterUrl = '';  
+        let sizes_url = ''
+        console.log(filter_url)
+        const sizesSelected  = document.querySelectorAll(".list-products-filter-size-radio:checked");
+        console.log(sizesSelected)
+        if (sizesSelected.length > 0) {
+            sizesSelected.forEach(size => {
+             sizes_url += `&search=${size.value}`;
+            })
+            newFilterUrl += `${filter_url}${sizes_url}`;
+            //localStorage.setItem('newFilterUrl', newFilterUrl);
+            var deleteProducts = document.querySelectorAll('.list-product-box');
+            deleteProducts.forEach(product =>{
+                product.outerHTML = "";
+            });
+            window.setTimeout(()=>{
+                listProduts(newFilterUrl);
+                console.log(newFilterUrl)
+            }, 4000) 
+        } else {
+            console.log("no hay tallas seleccionadas")
+            var deleteProducts = document.querySelectorAll('.list-product-box');
+            deleteProducts.forEach(product =>{
+                product.outerHTML = "";
+            });
+            window.setTimeout(()=>{
+                listProduts(filter_url);
+            }, 4000) 
+            
+        }
+}
+
+async function getFilterProducts(){
+   const filterProduct = await filterProductsBySize()
 }
