@@ -27,12 +27,8 @@ env.prod.db/*
 .env.staning.db
 .env.staging.db/
 .env.staging/*
-.env.staging.proxy-companion
-.env.staging.proxy-companion/
-.env.staging.proxy-companion/*
-.env.prod.proxy-companion
-.env.prod.proxy-companion/
-.env.prod.proxy-companion/*
+.env.staging*
+.env.prod*
 env.staging
 env.staging/
 env.staging/*

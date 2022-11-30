@@ -2415,9 +2415,27 @@
   }
 }
 
+@media (max-width: 1550px) {
+  #save-filters-btn-container{
+    top: 62%;
+  }
+}
+
 @media (max-width: 550px) {
   #save-filters-btn-container{
-    top: 60%;
+    top: 58%;
+  }
+}
+
+@media (max-width: 450px) {
+  #save-filters-btn-container{
+    top: 58%;
+  }
+}
+
+@media (max-width: 400px) {
+  #save-filters-btn-container{
+    top: 55%;
   }
 }
 
