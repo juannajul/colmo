@@ -10,6 +10,9 @@ from inventory.serializers.sizes import SizesModelSerializer
 # Models 
 from inventory.models.products import Sizes
 
+# Pagination
+from inventory.custom_pagination import SizePagination
+
 class SizesViewSet(
     mixins.ListModelMixin,
     mixins.UpdateModelMixin,
@@ -21,4 +24,5 @@ class SizesViewSet(
 
     queryset = Sizes.objects.all()
     serializer_class = SizesModelSerializer
+    pagination_class = SizePagination
 

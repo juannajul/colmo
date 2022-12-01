@@ -494,8 +494,6 @@ function filterBySize(){
 }
 
 async function filterProductsBySize(){
-    console.log("entra")
-        console.log("entra2")
         let filter_url = localStorage.getItem('filterUrl');
         let newFilterUrl = '';  
         let sizes_url = ''
@@ -515,7 +513,7 @@ async function filterProductsBySize(){
             window.setTimeout(()=>{
                 listProduts(newFilterUrl);
                 console.log(newFilterUrl)
-            }, 4000) 
+            }, 500) 
         } else {
             console.log("no hay tallas seleccionadas")
             var deleteProducts = document.querySelectorAll('.list-product-box');
@@ -524,7 +522,7 @@ async function filterProductsBySize(){
             });
             window.setTimeout(()=>{
                 listProduts(filter_url);
-            }, 4000) 
+            }, 500) 
             
         }
 }
