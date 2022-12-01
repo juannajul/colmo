@@ -8,12 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var activeTop = false;
     var activeBottoms = false;
     var activeShoes = false;
-    localStorage.setItem('filterUrl',  `/api/products/?ordering=-views&page=${paginationNumber}`);
+    //localStorage.setItem('filterUrl',  `/api/products/?ordering=-views&page=${paginationNumber}`);
     var nextUrl = ``;
     if (productSlug !== 'populares'){
-        var productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`
+        var productUrl = `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`;
+        localStorage.setItem('filterUrl',  `/api/products/${productSlug}/product_by_category/?ordering=-created_at&page=${paginationNumber}`);
     } else {
-        var productUrl = `/api/products/?ordering=-views&page=${paginationNumber}`
+        var productUrl = `/api/products/?ordering=-views&page=${paginationNumber}`;
+        localStorage.setItem('filterUrl',  `/api/products/?ordering=-views&page=${paginationNumber}`);
     }
     
     // all products 
@@ -496,8 +498,7 @@ function filterBySize(){
 async function filterProductsBySize(){
         let filter_url = localStorage.getItem('filterUrl');
         let newFilterUrl = '';  
-        let sizes_url = ''
-        console.log(filter_url)
+        let sizes_url = '';
         const sizesSelected  = document.querySelectorAll(".list-products-filter-size-radio:checked");
         console.log(sizesSelected)
         if (sizesSelected.length > 0) {
@@ -505,15 +506,13 @@ async function filterProductsBySize(){
              sizes_url += `&search=${size.value}`;
             })
             newFilterUrl += `${filter_url}${sizes_url}`;
-            //localStorage.setItem('newFilterUrl', newFilterUrl);
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";
             });
             window.setTimeout(()=>{
                 listProduts(newFilterUrl);
-                console.log(newFilterUrl)
-            }, 500) 
+            }, 300) 
         } else {
             console.log("no hay tallas seleccionadas")
             var deleteProducts = document.querySelectorAll('.list-product-box');
@@ -522,7 +521,7 @@ async function filterProductsBySize(){
             });
             window.setTimeout(()=>{
                 listProduts(filter_url);
-            }, 500) 
+            }, 300) 
             
         }
 }
