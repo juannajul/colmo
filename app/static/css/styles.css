@@ -2364,10 +2364,10 @@
   height: 800px;
   background: #ffffff;
   color: transparent;
-  top: 88px;
+  top: 15px;
   border: 1px solid rgba(68, 67, 67, 0.342);
   box-shadow: -3px 1px 7px rgb(82, 81, 81);
-  z-index: 3;
+  z-index: 5;
   left: 0;
   text-align: center;
   justify-content: flex-start;
@@ -2416,7 +2416,7 @@
 #save-filters-btn {
   width: 200px;
   height: 50px;
-  margin: 0px 30px 0px 0px;
+  margin: 0px 0px 0px 0px;
   background: #9CBED3;
   border-radius: 30px;
   border: 0px solid blueviolet;
