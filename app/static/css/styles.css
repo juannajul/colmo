@@ -369,8 +369,7 @@
   width: 100%;
   height: 900px;
   margin: 0;
-  background-image: url("../img/banner1.jpg");
-  animation: banner 15s infinite linear alternate;
+  animation: banner 20s infinite linear normal;
   background-size: 100% 1050px;
   background-position-y: -40px;
   position: relative;
@@ -381,7 +380,6 @@
   height: 900px;
   margin: 0;
   background-image: url("../img/banner2.jpeg");
-  animation: banner 15s infinite linear alternate;
   background-size: 100% 1050px;
   background-position-y: -40px;
   position: relative;
@@ -392,7 +390,6 @@
   height: 900px;
   margin: 0;
   background-image: url("../img/banner3.jpeg");
-  animation: banner 15s infinite linear alternate;
   background-size: 100% 1050px;
   background-position-y: -40px;
   position: relative;
@@ -403,7 +400,6 @@
   height: 900px;
   margin: 0;
   background-image: url("../img/populares1.jpeg");
-  animation: banner 15s infinite linear alternate;
   background-size: 100% 1050px;
   background-position-y: -40px;
   position: relative;
@@ -414,7 +410,6 @@
   height: 900px;
   margin: 0;
   background-image: url("../img/ofertas1.jpeg");
-  animation: banner 15s infinite linear alternate;
   background-size: 100% 1050px;
   background-position-y: -40px;
   position: relative;
@@ -425,25 +420,25 @@
   height: 900px;
   margin: 0;
   background-image: url("../img/accesorios1.jpeg");
-  animation: banner 15s infinite linear alternate;
   background-size: 100% 1050px;
   background-position-y: -40px;
   position: relative;
 }
 
-/*
 @keyframes banner {
-  0%, 30%{
+  0%, 20%{
     background-image:url("../img/banner1.jpg");
   }
-  35%, 65%{
+  25%, 45%{
     background-image:url("../img/banner2.jpeg");
   }
-  70%, 100%{
+  50%, 70%{
     background-image:url("../img/banner3.jpeg");
   }
+  75%, 100%{
+    background-image: url("../img/ofertas1.jpeg");
+  }
 }
-*/
 @media (max-width: 1500px) {
 
   #index-banner-container,
