@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 changeShoesBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
             }
         }
-        listProduts(topsUrl);
         localStorage.setItem('filterUrl', topsUrl);
+        listProduts(topsUrl);
     });
 
     // bottoms products
@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 changeTopBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
             }
         }
-        listProduts(bottomsUrl);
         localStorage.setItem('filterUrl', bottomsUrl);
+        listProduts(bottomsUrl);
     });
 
     // shoes products
@@ -386,7 +386,7 @@ function listProduts(productUrl){
             prevUrl = products.previous;
             productsCount = products.count;
             console.log(prevUrl);
-           // console.log(all_products)
+            console.log(all_products)
             all_products.forEach(product => {
                 var productCategories = product.category.join(" ");
                 const productContainer = document.createElement("DIV")
@@ -497,15 +497,21 @@ function filterBySize(){
 
 async function filterProductsBySize(){
         let filter_url = localStorage.getItem('filterUrl');
+        console.log(filter_url)
         let newFilterUrl = '';  
         let sizes_url = '';
         const sizesSelected  = document.querySelectorAll(".list-products-filter-size-radio:checked");
         console.log(sizesSelected)
         if (sizesSelected.length > 0) {
             sizesSelected.forEach(size => {
-             sizes_url += `&search=${size.value}`;
+                sizes_url += `sizes__size__size=${size.value}`;
             })
-            newFilterUrl += `${filter_url}${sizes_url}`;
+            last_filter = filter_url.split('&')
+            newFilterUrl = `${last_filter[0]}&${last_filter[2]}&${sizes_url}&${last_filter[1]}`
+            console.log(last_filter)
+            //newFilterUrl += `${filter_url}${sizes_url}`;
+            newFilterUrl = filter
+            console.log(newFilterUrl)
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";

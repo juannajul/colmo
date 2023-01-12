@@ -41,8 +41,7 @@
                     </div>
                 </div>
 
-
-                <ul id="nav-menu">
+                <!--<ul id="nav-menu">
                     <li>
                         <a href="{% url 'colmo:list_products' slug='caballeros' %}">CABALLEROS</a>
                     </li>
@@ -63,7 +62,35 @@
                         <a href="{% url 'colmo:list_products' slug='populares' %}">MAS BUSCADOS</a>
                     </li>
                     
+                </ul>-->
+                <ul id="nav-menu">
+                    <li>
+                        <a href="">ROPA</a>
+                        <ul>
+                            <li>
+                                <a href="{% url 'colmo:list_products' slug='caballeros' %}">CABALLEROS</a>
+                            </li>
+                            
+                            <li>
+                                <a href="{% url 'colmo:list_products' slug='damas' %}">DAMAS</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="{% url 'colmo:list_products' slug='accesorios' %}">ACCESORIOS</a>
+                    </li>
+                    
+                    <li>
+                        <a href="{% url 'colmo:list_products' slug='ofertas' %}">OFERTAS</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'colmo:list_products' slug='populares' %}">MAS BUSCADOS</a>
+                    </li>
+                    
                 </ul>
+
                 <ul id="nav-menu-user">
                     <li>
                         <input id="product-search-input" type="text" placeholder="Buscar" hidden>

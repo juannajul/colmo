@@ -25,7 +25,7 @@
 
 #website-area {
   width: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 #announcements {
@@ -2362,7 +2362,7 @@
   top: 15px;
   border: 1px solid rgba(68, 67, 67, 0.342);
   box-shadow: -3px 1px 7px rgb(82, 81, 81);
-  z-index: 5;
+  z-index: 1005;
   left: 0;
   text-align: center;
   justify-content: flex-start;

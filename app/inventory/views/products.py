@@ -20,8 +20,8 @@ from inventory.serializers.products import CreateProductSerializer
 
 # Filters
 from rest_framework.filters import SearchFilter, OrderingFilter
-#from rest_framework.filters import DjangoFilterBackend
 from django_filters.rest_framework import DjangoFilterBackend 
+
 from rest_framework.pagination import PageNumberPagination
 # Basket
 from inventory.basket.basket import Basket
@@ -42,18 +42,16 @@ class ProductViewSet(
 
     # Filters
     filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
+    filterset_fields = ['category__slug', 'sizes__size__size'] 
     search_fields = ('=color','=category__slug', '=sizes__size__size', '=made_by')
-    #search_fields = ('sizes__size__size',)
     oridering_fields = ('created_at', 'store_price', 'views')
-    #ordering = ('-created_at',)
-    filter_fields = ('is_active', 'is_sale_price_active',)
+    ordering = ('-created_at',)
+    filter_fields = ('sizes__size__size', 'category__slug')# DJangoFilterBackends
 
     def get_serializer_class(self):
         """Return serializer based on actions"""
         if self.action == 'create':
             return CreateProductSerializer
-        """if self.action == 'men_products':
-            return ProductModelSerializer"""
         return ProductModelSerializer
 
     """
@@ -67,6 +65,7 @@ class ProductViewSet(
     def get_queryset(self): 
         if self.action == 'product_by_category':
             print(self.kwargs['slug'])
+            print(self.args)
             if self.kwargs['slug'] == 'ofertas':
                 return Product.objects.filter(is_active=True, is_sale_price_active=True)
             else:

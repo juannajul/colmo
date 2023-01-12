@@ -33,6 +33,7 @@ class Sizes(models.Model):
     class Meta:
         verbose_name = "Sizes"
         verbose_name_plural = "Sizes"
+        ordering = ["pk"]
 
 class Brand(models.Model):
     """Brands Model."""
