@@ -45,8 +45,8 @@ class ProductViewSet(
     filterset_fields = ['category__slug', 'sizes__size__size'] 
     search_fields = ('=color','=category__slug', '=sizes__size__size', '=made_by')
     oridering_fields = ('created_at', 'store_price', 'views')
-    ordering = ('-created_at',)
-    filter_fields = ('sizes__size__size', 'category__slug')# DJangoFilterBackends
+    #ordering = ('-created_at',)
+    #filter_fields = ('sizes__size__size', 'category__slug')# DJangoFilterBackends
 
     def get_serializer_class(self):
         """Return serializer based on actions"""
@@ -114,7 +114,8 @@ class ProductViewSet(
     def add_product_basket(self, request, *args, **kwargs):
         """Add products to the bag."""
         basket = Basket(request)
-        product = self.filter_queryset(self.get_queryset())
+        #product = self.filter_queryset(self.get_queryset())
+        product = self.get_queryset()
         product_size_id = self.request.data['product_size_id']
         size = self.request.data['size']
         #print(request.data)
@@ -132,7 +133,8 @@ class ProductViewSet(
     def delete_product_basket(self, request, *args, **kwargs):
         """Add products to the bag."""
         basket = Basket(request)
-        product = self.filter_queryset(self.get_queryset())
+        #product = self.filter_queryset(self.get_queryset())
+        product = self.get_queryset()
         product_slug = product.slug
         product_size_id = self.request.data['product_size_id']
         basket.delete(product=product_slug, product_size_id=product_size_id)
@@ -145,7 +147,8 @@ class ProductViewSet(
     def update_basket(self, request, *args, **kwargs):
         """Update products in the bag."""
         basket = Basket(request)
-        product = self.filter_queryset(self.get_queryset())
+        #product = self.filter_queryset(self.get_queryset())
+        product = self.get_queryset()
         product_slug = product.slug
         product_size_id = self.request.data['product_size_id']
         qty = self.request.data['qty']

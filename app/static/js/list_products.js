@@ -509,8 +509,6 @@ async function filterProductsBySize(){
             last_filter = filter_url.split('&')
             newFilterUrl = `${last_filter[0]}&${last_filter[2]}&${sizes_url}&${last_filter[1]}`
             console.log(last_filter)
-            //newFilterUrl += `${filter_url}${sizes_url}`;
-            newFilterUrl = filter
             console.log(newFilterUrl)
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{

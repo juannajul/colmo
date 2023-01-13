@@ -89,6 +89,10 @@ class Product(models.Model):
         """Return brand name"""
         return self.name
     
+    class Meta:
+        verbose_name_plural = "Products"
+        ordering = ["-created_at"]
+    
 
 @receiver(models.signals.post_delete, sender=Product)
 def auto_delete_file_on_delete(sender, instance, **kwargs):
@@ -104,13 +108,6 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
         instance.image3.delete(False)
 
 
-    class Meta:
-        verbose_name_plural = "Products"
-        ordering = ["-created_at"]
 
-            # mostrar productos por las tallas s=dsiponibles 
-            #actvivar descuentos
-            # dia epecifico activar descuento a usuarios con mas de 5 productos dentro del carrito
-            # Brand is_active field
             
     

@@ -65,13 +65,13 @@
                 </ul>-->
                 <ul id="nav-menu">
                     <li>
-                        <a href="">ROPA</a>
-                        <ul>
-                            <li>
+                        <a href="" id="nav-menu-clothes">ROPA</a>
+                        <ul id="nav-menu-clothes-dropdown" class="nav-menu-clothes-dropdown">
+                            <li class="nav-menu-clothes-dropdown-category">
                                 <a href="{% url 'colmo:list_products' slug='caballeros' %}">CABALLEROS</a>
                             </li>
                             
-                            <li>
+                            <li class="nav-menu-clothes-dropdown-category">
                                 <a href="{% url 'colmo:list_products' slug='damas' %}">DAMAS</a>
                             </li>
                         </ul>
@@ -112,8 +112,19 @@
                     </li>
                 </ul>
             </nav>
+            <!--<nav id="nav-menu-clothes-dropdown-nav"></nav>-->
+                <!--<ul id="nav-menu-clothes-dropdown" class="nav-menu-clothes-dropdown">
+                    <li class="nav-menu-clothes-dropdown-category">
+                        <a href="{% url 'colmo:list_products' slug='caballeros' %}">CABALLEROS</a>
+                    </li>
+                    
+                    <li class="nav-menu-clothes-dropdown-category">
+                        <a href="{% url 'colmo:list_products' slug='damas' %}">DAMAS</a>
+                    </li>
+                </ul>
+            -->
         </header>
-            
+        
         <div class="body">
             {% block body %}
             {% endblock %}

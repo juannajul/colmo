@@ -25,7 +25,7 @@
 
 #website-area {
   width: 100%;
-  /*overflow: hidden;*/
+  overflow: hidden;
 }
 
 #announcements {
@@ -81,14 +81,14 @@
 #nav {
   display: flex;
   flex-grow: 1;
-  margin-top: -15px;
-  height: 22px;
+  margin-top: 35px;
+  height: 49px;
 }
 
 #nav>#nav-menu {
   margin: 0px;
   /*margin-right: -315px;*/
-  margin-right: -280px;
+  margin-right: -155px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -122,11 +122,13 @@
   border: 0px solid orange;
 }
 
-#nav>#nav-menu a {
+#nav>#nav-menu a,
+#nav-menu-clothes-dropdown-category a{
   color: #2f466f;
   font-family: MontserratBold;
   font-size: 14px;
   transition: all 400ms;
+  display: block;
 }
 
 #nav-menu-user #product-search-input {
@@ -145,6 +147,74 @@
   margin-top: -3px;
   width: 30px;
   margin-right: -7px;
+}
+
+#nav-menu-clothes-dropdown-nav{
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100px;
+  top: 1px;
+  background-color: #9CBED3;
+}
+
+#nav-menu-clothes-dropdown{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items:center;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  height: 100px;
+  top: 1px;
+  background-color: #9CBED3;
+  z-index: 20000;
+}
+
+#nav-menu-clothes-dropdown {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  top: 88px;
+  background-color: #9CBED3;
+  z-index: 1;
+  left: 0px;
+  padding-top: 42px;
+  transition: all 300ms ease;
+  box-shadow: -1px 3px 6px rgb(61, 61, 61);
+}
+
+#nav-menu-clothes-dropdown:hover{
+  transition: all 300ms ease;
+  display: inline-flex;
+}
+
+#nav-menu-clothes{
+  height: 50px !important;
+  transition: all 300ms ease;
+  width: 100px;
+  text-align: center;
+  margin-right: -25px;
+}
+
+#nav-menu-clothes:hover ~ .nav-menu-clothes-dropdown{
+  transition: all 300ms ease;
+  display: inline-flex;
+  
+}
+
+.nav-menu-clothes-dropdown-category{
+  margin: 0px 96px 0px 15px !important;
+  color: #2f466f;
+  font-family: MontserratBold;
+  font-size: 14px;
+  transition: all 400ms;
 }
 
 #basket-count {
@@ -531,7 +601,7 @@
   #damas-banner-container,
   #accesorios-banner-container,
   #ofertas-banner-container {
-    height: 629px;
+    height: 627px;
     background-size: 175% 648px;
     background-position-y: -20px;
     background-position-x: -37px;
@@ -544,7 +614,7 @@
   #caballeros-banner-container,
   #populares-banner-container,
   #damas-banner-container {
-    height: 630px;
+    height: 627px;
     background-size: 220% 648px;
     background-position-y: -20px;
     background-position-x: -40px;
