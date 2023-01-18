@@ -41,39 +41,31 @@
                     </div>
                 </div>
 
-                <!--<ul id="nav-menu">
-                    <li>
-                        <a href="{% url 'colmo:list_products' slug='caballeros' %}">CABALLEROS</a>
-                    </li>
-                    
-                    <li>
-                        <a href="{% url 'colmo:list_products' slug='damas' %}">DAMAS</a>
-                    </li>
-                    
-                    <li>
-                        <a href="{% url 'colmo:list_products' slug='accesorios' %}">ACCESORIOS</a>
-                    </li>
-                    
-                    <li>
-                        <a href="{% url 'colmo:list_products' slug='ofertas' %}">OFERTAS</a>
-                    </li>
-
-                    <li>
-                        <a href="{% url 'colmo:list_products' slug='populares' %}">MAS BUSCADOS</a>
-                    </li>
-                    
-                </ul>-->
                 <ul id="nav-menu">
                     <li>
-                        <a href="" id="nav-menu-clothes">ROPA</a>
-                        <ul id="nav-menu-clothes-dropdown" class="nav-menu-clothes-dropdown">
+                        <span href="" id="nav-menu-clothes">ROPA</span> <!--nav-menu-clothes-mobile-->
+                        <ul id="nav-menu-clothes-dropdown" class="nav-menu-clothes-dropdown"> <!--nav-menu-clothes-dropdown-mobile-->
                             <li class="nav-menu-clothes-dropdown-category">
+                                <span class="nav-colmo-icon"></span>
                                 <a href="{% url 'colmo:list_products' slug='caballeros' %}">CABALLEROS</a>
                             </li>
                             
                             <li class="nav-menu-clothes-dropdown-category">
+                                <span class="nav-colmo-icon"></span>
                                 <a href="{% url 'colmo:list_products' slug='damas' %}">DAMAS</a>
                             </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <span href="" id="nav-menu-brands">MARCAS</span>
+                        <ul id="nav-menu-brands-dropdown" class="nav-menu-brands-dropdown">
+                            {% for brand in brands %}
+                            <li class="nav-menu-brands-dropdown-category">
+                                <span class="nav-colmo-icon"></span>
+                                <a href="{% url 'colmo:list_products' slug='caballeros' %}">{{brand}}</a>
+                            </li>
+                            {% endfor %}
                         </ul>
                     </li>
                     
@@ -88,7 +80,7 @@
                     <li>
                         <a href="{% url 'colmo:list_products' slug='populares' %}">MAS BUSCADOS</a>
                     </li>
-                    
+
                 </ul>
 
                 <ul id="nav-menu-user">

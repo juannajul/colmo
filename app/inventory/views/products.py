@@ -64,13 +64,14 @@ class ProductViewSet(
 
     def get_queryset(self): 
         if self.action == 'product_by_category':
-            print(self.kwargs['slug'])
-            print(self.args)
             if self.kwargs['slug'] == 'ofertas':
                 return Product.objects.filter(is_active=True, is_sale_price_active=True)
             else:
                 category = Category.objects.get(slug=self.kwargs['slug'])
                 return Product.objects.filter(category=category, is_active=True)
+        if self.action == 'product_by_brand':
+            brand = Brand.objects.get(slug=self.kwargs['slug'])
+            return Product.objects.filter(brand=brand, is_active=True)
         if self.action == 'list_random_products':
             return Product.objects.order_by('?')
         if self.action == 'add_product_basket':
@@ -94,6 +95,15 @@ class ProductViewSet(
         serializer = ProductModelSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
         
+    @action(detail=True, methods=["get"])
+    def product_by_brand(self, request, *args, **kwargs):
+        """List products by category."""
+        paginator = PageNumberPagination()
+        paginator.page_size = 12
+        products = self.filter_queryset(self.get_queryset())
+        result_page = paginator.paginate_queryset(products, request)
+        serializer = ProductModelSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
         
         """ 
         products = self.filter_queryset(self.get_queryset())

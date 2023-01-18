@@ -102,7 +102,7 @@
 #nav>#nav-menu-user {
   margin: 0px;
   margin-left: 50px;
-  margin-right: -65px;
+  margin-right: -45px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -123,12 +123,16 @@
 }
 
 #nav>#nav-menu a,
-#nav-menu-clothes-dropdown-category a{
+#nav-menu-clothes-dropdown-category a,
+#nav>#nav-menu #nav-menu-clothes,
+#nav-menu-brands-dropdown-category a,
+#nav>#nav-menu #nav-menu-brands{
   color: #2f466f;
   font-family: MontserratBold;
   font-size: 14px;
   transition: all 400ms;
   display: block;
+  cursor: pointer;
 }
 
 #nav-menu-user #product-search-input {
@@ -142,14 +146,11 @@
   width: 0;
 }
 
-#basket-icon img,
-#user-icon img {
-  margin-top: -3px;
-  width: 30px;
-  margin-right: -7px;
-}
 
-#nav-menu-clothes-dropdown-nav{
+/* Nav-menu clothes dropdown*/
+
+#nav-menu-clothes-dropdown-nav,
+#nav-menu-brands-dropdown-nav{
   display: none;
   position: relative;
   width: 100%;
@@ -158,21 +159,8 @@
   background-color: #9CBED3;
 }
 
-#nav-menu-clothes-dropdown{
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items:center;
-  flex-wrap: wrap;
-  position: relative;
-  width: 100%;
-  height: 100px;
-  top: 1px;
-  background-color: #9CBED3;
-  z-index: 20000;
-}
-
-#nav-menu-clothes-dropdown {
+.nav-menu-clothes-dropdown,
+.nav-menu-brands-dropdown {
   display: none;
   flex-direction: row;
   justify-content: center;
@@ -188,33 +176,175 @@
   padding-top: 42px;
   transition: all 300ms ease;
   box-shadow: -1px 3px 6px rgb(61, 61, 61);
+  animation: openDropdownDesktop 200ms ease-in;
 }
 
-#nav-menu-clothes-dropdown:hover{
+@keyframes openDropdownDesktop{
+      0%{
+          opacity: 0;
+          height: 0px;
+      }
+      25%{
+          opacity: .25;
+          height: 25px;
+      }
+      50%{
+          opacity: .5;
+          height: 50px;
+      }
+      75%{
+        opacity: .75;
+        height: 75px;
+      }
+      100%{
+        opacity: 1;
+        height: 100px;
+      }
+}
+
+.nav-menu-clothes-dropdown:hover,
+.nav-menu-brands-dropdown:hover{
   transition: all 300ms ease;
   display: inline-flex;
 }
 
-#nav-menu-clothes{
+#nav-menu-clothes,
+#nav-menu-brands{
   height: 50px !important;
   transition: all 300ms ease;
   width: 100px;
   text-align: center;
   margin-right: -25px;
+  margin-left: -25px;
 }
 
-#nav-menu-clothes:hover ~ .nav-menu-clothes-dropdown{
+#nav-menu-clothes:hover ~ .nav-menu-clothes-dropdown,
+#nav-menu-brands:hover ~ .nav-menu-brands-dropdown{
   transition: all 300ms ease;
   display: inline-flex;
-  
 }
 
-.nav-menu-clothes-dropdown-category{
+.nav-menu-clothes-dropdown-category,
+.nav-menu-brands-dropdown-category{
+  display: inline-flex;
   margin: 0px 96px 0px 15px !important;
   color: #2f466f;
   font-family: MontserratBold;
   font-size: 14px;
   transition: all 400ms;
+}
+
+
+
+@media(max-width:950px) {
+  #nav-menu-clothes,
+  #nav-menu-brands {
+    height: 30px !important;
+    transition: all 300ms ease;
+    width: 100%;
+    text-align: center;
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+  .nav-menu-clothes-dropdown,
+  .nav-menu-brands-dropdown {
+    display: none;
+  }
+
+  .nav-menu-clothes-dropdown-category,
+  .nav-menu-brands-dropdown-category {
+    display: inline-flex;
+    margin: 10px 0px 2px 0px !important;
+    width: 100% !important;
+  }
+
+  .nav-menu-clothes-dropdown-open,
+  .nav-menu-brands-dropdown-open{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    top: 0px;
+    margin-bottom: 30px;
+    padding-top: 0px;
+    box-shadow: 0px 0px 8px rgb(61, 61, 61) inset; 
+    transition: all 300ms ease;
+    width: 100%;
+    height: auto;
+    padding: 15px 0px 15px 0px;
+    background-color: #9CBED3;
+    z-index: 1;
+    left: 0px;
+    animation: openDropdown 170ms ease-out;
+  }
+
+  .nav-colmo-icon {
+    background: #2f466f;
+    width: 14px;
+    height: 9px;
+    border-radius: 50%;
+    transform: rotate(30deg);
+    position: relative;
+    top: 4px;
+    left: 120px;
+  }
+
+  @keyframes openDropdown{
+      0%{
+          opacity: 0;
+          height: 0px;
+      }
+      25%{
+          opacity: .25;
+          height: 25px;
+      }
+      50%{
+          opacity: .5;
+          height: 50px;
+      }
+      75%{
+        opacity: .75;
+        height: 75px;
+      }
+      100%{
+        opacity: 1;
+        height: 100px;
+      }
+  }
+
+  @keyframes closeDropdown{
+    0%{
+        opacity: 1;
+        height: 100px;
+    }
+    25%{
+        opacity: .75;
+        height: 75px;
+    }
+    50%{
+        opacity: .5;
+        height: 50px;
+    }
+    75%{
+      opacity: .25;
+      height: 25px;
+    }
+    100%{
+      opacity: 0;
+      height: 0px;
+    }
+}
+
+}
+
+#basket-icon img,
+#user-icon img {
+  margin-top: -3px;
+  width: 30px;
+  margin-right: -7px;
 }
 
 #basket-count {
@@ -370,15 +500,15 @@
   }
 
   #nav #nav-menu {
-    position: fixed;
+    position: absolute;
     flex-direction: column;
     width: 100%;
     margin-left: -105%;
-    height: 100vh;
+    min-height: 100vh;
     background: #ffffff;
     color: transparent;
-    top: 88px;
-    border-top: 1px solid rgba(68, 67, 67, 0.342);
+    top: 87px;
+    border: 1px solid rgba(68, 67, 67, 0.342);
     z-index: 2;
     left: 0;
     text-align: center;
@@ -392,7 +522,7 @@
   }
 
   #nav>#nav-menu li {
-    flex-basis: 15%;
+    flex-basis: 10%;
     margin-right: 0;
   }
 
@@ -2481,7 +2611,7 @@
 #save-filters-btn {
   width: 200px;
   height: 50px;
-  margin: 0px 0px 0px 0px;
+  margin: -200px 0px 0px 0px;
   background: #9CBED3;
   border-radius: 30px;
   border: 0px solid blueviolet;
@@ -2579,6 +2709,14 @@
 
 .list-products-filter-size-radio:checked+.list-products-filter-size-title {
   background-color: #9CBED3;
+}
+
+@media (max-width: 1800px) {
+
+  #list-products-filters-desplegable{
+    height: 700px;
+  }
+
 }
 
 /* whatsapp fixed button */
