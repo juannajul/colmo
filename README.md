@@ -9,4 +9,6 @@
 * `HTML/CSS.`
 * `Postgresql.`
 * `Docker/Docker-compose.`
+* `Nginx.`
+
 
