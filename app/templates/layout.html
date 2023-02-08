@@ -63,7 +63,7 @@
                             {% for brand in brands %}
                             <li class="nav-menu-brands-dropdown-category">
                                 <span class="nav-colmo-icon"></span>
-                                <a href="{% url 'colmo:list_products' slug='caballeros' %}">{{brand}}</a>
+                                <a href="{% url 'colmo:list_brand_products' brand_slug=brand.slug %}">{{brand}}</a>
                             </li>
                             {% endfor %}
                         </ul>

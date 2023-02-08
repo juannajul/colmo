@@ -8,6 +8,7 @@ from inventory.models.products import Brand
 
 class BrandModelSerializer(serializers.ModelSerializer):
     """Brand model serializer."""
+    brand_filter_categories = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Brand

@@ -22,6 +22,7 @@ class BrandViewSet(
     mixins.DestroyModelMixin,
     viewsets.GenericViewSet):
     """Brands view set"""
+    lookup_field = 'slug'
 
     queryset = Brand.objects.all()
 

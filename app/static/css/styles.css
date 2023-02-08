@@ -88,7 +88,7 @@
 #nav>#nav-menu {
   margin: 0px;
   /*margin-right: -315px;*/
-  margin-right: -155px;
+  margin-right: -215px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -116,7 +116,7 @@
 #nav #nav-menu-user li {
   width: auto;
   margin: 0;
-  margin-right: 2%;
+  margin-right: 3%;
   /* Was 7% */
   height: 100%;
   border: 0px solid orange;
@@ -156,7 +156,7 @@
   width: 100%;
   height: 100px;
   top: 1px;
-  background-color: #9CBED3;
+  background-color: #ffffff;
 }
 
 .nav-menu-clothes-dropdown,
@@ -170,12 +170,12 @@
   width: 100%;
   height: 100px;
   top: 88px;
-  background-color: #9CBED3;
+  background-color: #ffffff;
   z-index: 1;
   left: 0px;
   padding-top: 42px;
   transition: all 300ms ease;
-  box-shadow: -1px 3px 6px rgb(61, 61, 61);
+  box-shadow: -1px 2px 5px rgb(189, 189, 189) inset;
   animation: openDropdownDesktop 200ms ease-in;
 }
 
@@ -270,12 +270,12 @@
     top: 0px;
     margin-bottom: 30px;
     padding-top: 0px;
-    box-shadow: 0px 0px 8px rgb(61, 61, 61) inset; 
+    box-shadow: 0px 0px 4px rgb(82, 82, 82) inset; 
     transition: all 300ms ease;
     width: 100%;
     height: auto;
     padding: 15px 0px 15px 0px;
-    background-color: #9CBED3;
+    background-color: #ffffff;
     z-index: 1;
     left: 0px;
     animation: openDropdown 170ms ease-out;
@@ -585,6 +585,27 @@
   position: relative;
 }
 
+#colmo-banner-container {
+  width: 100%;
+  height: 900px;
+  margin: 0;
+  background-image: url("../img/banner2.jpeg");
+  background-size: 100% 1050px;
+  background-position-y: -40px;
+  position: relative;
+}
+
+#teulu-banner-container {
+  width: 100%;
+  height: 900px;
+  margin: 0;
+  background-image: url("../img/teulu.jpg");
+  background-size: 74% 1200px;
+  background-position-y: -218px;
+  position: relative;
+  background-position-x: 222px;
+}
+
 #damas-banner-container {
   width: 100%;
   height: 900px;
@@ -789,8 +810,8 @@
 .product-box {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  height: 400px;
+  width: auto !important; /*300px*/
+  height: auto !important; /*400px*/
   padding: 0px 0px 40px 0px;
   border: 0px solid rgba(0, 0, 0, 0.08);
   border-radius: 2px;
@@ -800,7 +821,7 @@
 }
 
 .product-box:hover {
-  border: 1px solid #222222;
+  border: 0px solid #222222;
   transition: all ease 0.3s;
 }
 
@@ -814,8 +835,7 @@
 
 .product-img {
   width: 100%;
-  height: 90%;
-  object-fit: cover;
+  height: 90%; /*90%*/
 }
 
 .product-img a {
@@ -828,11 +848,12 @@
   width: 100%;
   height: 100%;
   max-height: 500px;
+  object-fit: cover; /*none*/
 }
 
 .product-box-text {
   margin-top: 8px;
-  padding: 0px 5px 5px 5px;
+  padding: 0px 5px 5px 1px;
   width: 100%;
 }
 
@@ -998,6 +1019,7 @@
   .product-box {
     margin: 0 10px 30px 0px;
     padding: 0px 0px 30px 0px;
+    min-width: 215px !important; /*none*/
   }
 
   .product-slider-heading {
@@ -2110,7 +2132,7 @@
   height: 100%;
   max-height: 500px;
   object-position: center;
-  object-fit: contain;
+  object-fit: cover; /*contain*/
   position: relative;
 }
 

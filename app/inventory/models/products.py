@@ -40,6 +40,8 @@ class Brand(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name="Brand name")
     slug = models.SlugField(max_length=255, unique=True, verbose_name="Brand slug")
     description = models.TextField(max_length=450, blank=True, verbose_name="Brand descrition")
+    brand_image = models.ImageField(blank=True, upload_to="media/brands/", verbose_name="brand image")
+    brand_filter_categories = models.ManyToManyField(Category, blank=True, related_name="brand_categories")
     brand_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Brand user")
 
     def __str__(self):
@@ -48,6 +50,15 @@ class Brand(models.Model):
 
     class Meta:
         verbose_name_plural = "Brands"
+
+@receiver(models.signals.post_delete, sender=Brand)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding `Document` object is deleted.
+    """
+    if instance.brand_image:
+        instance.brand_image.delete(False)
 
 
 class ProductSizes(models.Model):

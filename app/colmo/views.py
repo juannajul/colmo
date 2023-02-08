@@ -26,6 +26,16 @@ def list_products(request, slug):
         'slug': slug
     })
 
+def list_brands_products(request, brand_slug):
+    brand = Brand.objects.get(slug=brand_slug)
+    brand_principal_categories = brand.brand_filter_categories.all()
+    return render(request, '../templates/brands/brand_products.html', {
+        'brand_slug': brand_slug,
+        'brand_principal_category_1': brand_principal_categories[0],
+        'brand_principal_category_2': brand_principal_categories[1],
+        'brand_principal_category_3': brand_principal_categories[2],
+    })
+
 def login(request):
     return render(request, '../templates/users/login.html')
 

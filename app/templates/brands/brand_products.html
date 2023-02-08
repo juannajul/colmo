@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block body %}
+
+   <div id="{{brand_slug}}-banner-container">
+      <div class="capa"></div>
+      <div class="banner-content">
+   </div> 
+   
+   <div id="list-product-banner-container">
+      <div class="list-product-banner-title-container">
+         <h2 class="list-product-banner-title">{{brand_slug}}</h2>
+      </div>
+      <div class="list-products-banner-filters-container">
+         <div id="list-products-banner-category_1" class="list-products-banner-filters list-products-banner-filters-active">
+            <h4 id="list-products-banner-category_1-title" class="list-products-filters-active-title list-tops-title">{{brand_principal_category_1}}</h4>
+         </div>
+         <div id="list-products-banner-category_2" class="list-products-banner-filters list-products-banner-filters-active">
+            <h4 id="list-products-banner-category_2-title" class="list-products-filters-active-title list-bottoms-title">{{brand_principal_category_2}}</h4>
+         </div>
+         <div id="list-products-banner-category_3" class="list-products-banner-filters list-products-banner-filters-active">
+            <h4 id="list-products-banner-category_3-title" class="list-products-filters-active-title list-shoes-title">{{brand_principal_category_3}}</h4>
+         </div>
+      </div>
+   </div>
+ {{brand.brand_user}}
+   </div>
+   <!--PRODUCT CONTAINER-->
+   <section id="index-content">
+      <section id="list-products-filters-btns-container">
+         <div id="list-products-filters-container">
+            <button id="list-products-filters-btn-filters">Filtros</button>
+         </div>
+         <div id="list-products-filters-desplegable">
+            <div id="list-products-close-filters-container"><h4 id="list-products-close-filters-btn">X</h4></div>
+               <div id="list-products-filters-content-container">
+                  <div id="list-products-filters-sizes-container">
+                  <div id="list-products-filters-sizes-title-container">
+                     <h3 id="list-products-filters-sizes-title">Sizes</h3>
+                  </div>
+                  <div id="list-products-filters-sizes-btns-container">
+                     
+                  </div>
+               </div>
+            </div>
+            <div id="save-filters-btn-container">
+               <div id="save-filters-btn"><h4 id="save-filters-btn-title">Filtrar</h4></div>
+            </div>
+         </div>
+
+      </section>
+      <section id="list-products-section">
+         <div id="list-products-container"></div>
+         <div id="pagination-btn-container">
+            <div id="pagination-btn-prev" class=""><h4>Anterior</h4></div>/<div id="pagination-btn-next" class=""><h4>Siguiente</h4></div>
+         </div>
+      </section>
+
+      <div class="colmo-line"></div>
+
+      <!-- PRODUCT SLIDER -->
+      <section id="product-slider-section">
+         <!-- title -->
+         <div class="product-slider-container">
+            <h3 class="product-slider-heading">Colmo - Recomendaciones</h3>
+         
+            <div class="glider-contain">
+               <div class="glider" id="glider-id">
+                     <!--Codigo para el carrusel de productos-->
+               </div>
+               
+               <div id="product-slider-previus-btn" class="glider-prev">
+                  <button aria-label="Previous" class="glider-prev">«</button>
+               </div>
+               <div id="product-slider-next-btn" class="glider-next">
+                  <button aria-label="Next" class="glider-next">»</button>
+               </div>
+               
+            </div>
+         </div>
+
+      </section>
+
+   </section>
+{% endblock body %}
+
+{% block script %}
+   <script src="{% static '/js/carousel.js' %}"></script>
+   <script src="{% static '/js/glider.min.js' %}"></script>
+   <script src="{% static '/js/list_brands_products.js' %}"></script>
+{% endblock %}

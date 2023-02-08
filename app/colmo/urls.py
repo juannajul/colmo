@@ -10,5 +10,6 @@ urlpatterns = [
     path('products/<str:slug>/', views.list_products, name="list_products"),
     path('basket/', views.basket, name="basket"),
     path('login/', views.login, name="login"),
-    path('colmo/confirmation', views.colmo_confirmation, name='colmo_confirmation')
+    path('colmo/confirmation', views.colmo_confirmation, name='colmo_confirmation'),
+    path('brands/<str:brand_slug>', views.list_brands_products, name='list_brand_products')
 ]

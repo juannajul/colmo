@@ -8,6 +8,7 @@ function getRandomProducts(){
         .then(products =>{
             //console.log(products)
             products.results.forEach(product => {
+                var productCategories = product.category.join(" ");
                 const productBox = document.createElement("DIV")
                 productBox.classList.add("product-box")
                 productBox.innerHTML = 
@@ -25,7 +26,7 @@ function getRandomProducts(){
                     ${product.name}
                 </div>
                 <div class="product-category">
-                    <span>${product.category}</span>
+                    <span>${productCategories}</span>
                 </div>`
                 document.getElementById("glider-id").appendChild(productBox)
                 if (product.is_sale_price_active === true) {

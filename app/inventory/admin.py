@@ -12,7 +12,7 @@ from inventory.models.sold_confirmation import SoldProductConfirmation
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'sku', 'stock', 'is_active')
-    list_filter = ('category', 'is_active')
+    list_filter = ('category', 'is_active', 'brand')
     search_fields = ('name', 'sku')
     list_display_links = ('name',)
     actions = ['update_products_stock']
