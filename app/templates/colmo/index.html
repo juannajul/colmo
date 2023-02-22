@@ -14,6 +14,13 @@
                     <p>¡Bienvenido {{ request.user.username }}!</p>
       {% endif %}-->
       <!--<div id="colmo-design-background"></div>-->
+      <section id="index-brands-section">
+         <!-- title -->
+         <h3 class="index-brands-heading">Marcas</h3>
+         <div id="index-brands-container">
+            
+         </div>
+      </section>
       <!-- PRODUCT SLIDER -->
       <section id="product-slider-section">
          <!-- title -->
@@ -41,6 +48,7 @@
 {% endblock body %}
 
 {% block script %}
+   <script src="{% static '/js/brands.js' %}"></script>
     <script src="{% static '/js/carousel.js' %}"></script>
     <script src="{% static '/js/glider.min.js' %}"></script>
 {% endblock %}

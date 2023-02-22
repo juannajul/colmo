@@ -11,9 +11,9 @@
    
    <div id="list-product-banner-container">
       <div class="list-product-banner-title-container">
-         <h2 class="list-product-banner-title">{{brand_slug}}</h2>
+         <h2 class="list-product-banner-title">{{brand_name}}</h2>
       </div>
-      <div class="list-products-banner-filters-container">
+      <!--<div class="list-products-banner-filters-container">
          <div id="list-products-banner-category_1" class="list-products-banner-filters list-products-banner-filters-active">
             <h4 id="list-products-banner-category_1-title" class="list-products-filters-active-title list-tops-title">{{brand_principal_category_1}}</h4>
          </div>
@@ -23,9 +23,15 @@
          <div id="list-products-banner-category_3" class="list-products-banner-filters list-products-banner-filters-active">
             <h4 id="list-products-banner-category_3-title" class="list-products-filters-active-title list-shoes-title">{{brand_principal_category_3}}</h4>
          </div>
+      </div>-->
+      <div class="list-products-banner-filters-container">
+         {% for category in brand_categories %}
+            <div id="list-products-banner-category_{{forloop.counter}}" class="list-products-banner-filters list-products-banner-filters-active">
+               <h4 id="list-products-banner-category_{{forloop.counter}}-title" class="list-products-filters-active-title list-category{{forloop.counter}}-title">{{category}}</h4>
+            </div>
+         {% endfor %}
       </div>
    </div>
- {{brand.brand_user}}
    </div>
    <!--PRODUCT CONTAINER-->
    <section id="index-content">

@@ -21,8 +21,8 @@ from inventory.serializers.products import CreateProductSerializer
 # Filters
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend 
-
 from rest_framework.pagination import PageNumberPagination
+
 # Basket
 from inventory.basket.basket import Basket
 

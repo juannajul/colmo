@@ -43,6 +43,7 @@ class Brand(models.Model):
     brand_image = models.ImageField(blank=True, upload_to="media/brands/", verbose_name="brand image")
     brand_filter_categories = models.ManyToManyField(Category, blank=True, related_name="brand_categories")
     brand_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Brand user")
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         """Return brand name"""
@@ -50,6 +51,7 @@ class Brand(models.Model):
 
     class Meta:
         verbose_name_plural = "Brands"
+        ordering = ["pk"]
 
 @receiver(models.signals.post_delete, sender=Brand)
 def auto_delete_file_on_delete(sender, instance, **kwargs):

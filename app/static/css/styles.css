@@ -179,6 +179,10 @@
   animation: openDropdownDesktop 200ms ease-in;
 }
 
+.nav-colmo-icon{
+  display: none;
+}
+
 @keyframes openDropdownDesktop{
       0%{
           opacity: 0;
@@ -234,6 +238,9 @@
   transition: all 400ms;
 }
 
+#nav-menu-brands-dropdown-category{
+  width: 10% !important;
+}
 
 
 @media(max-width:950px) {
@@ -282,6 +289,7 @@
   }
 
   .nav-colmo-icon {
+    display: block;
     background: #2f466f;
     width: 14px;
     height: 9px;
@@ -789,7 +797,8 @@
 
 
 /* Product Slider css styles */
-.product-slider-container {
+.product-slider-container,
+#index-brands-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -799,7 +808,8 @@
   overflow-x: hidden !important;
 }
 
-.product-slider-heading {
+.product-slider-heading,
+.index-brands-heading {
   font-size: 30px;
   text-transform: uppercase;
   font-family: MontserratBold;
@@ -1037,6 +1047,105 @@
     font-size: 0.7rem;
     margin: 0px 0px;
   }
+}
+
+/* Index Brands */
+#index-brands-section{
+  width: 100%;
+  height: auto;
+  margin-top: 50px;
+  margin-bottom: -40px;
+}
+
+.index-brands-heading{
+  width: 95%;
+}
+
+#index-brands-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  overflow: hidden;
+}
+
+#brand-container{
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin: 50px 30px 10px 30px;
+  border: 1px solid rgba(68, 67, 67, 0.5);
+  box-shadow: -1px 1px 7px rgb(114, 113, 113);
+  border-radius: 80px 120px 80px 120px;
+  -webkit-animation: pulsate-bck 2s linear infinite both;
+	animation: pulsate-bck 2s linear infinite both;
+}
+
+#brand-container:hover{
+}
+
+@-webkit-keyframes pulsate-bck {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes pulsate-bck {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@media(max-width:520px) {
+  #brand-container{
+    width: 180px;
+    height: 180px;
+    margin: 50px 10px 10px 10px;
+  }
+}
+
+@media(max-width:400px) {
+  #brand-container{
+    width: 165px;
+    height: 165px;
+    margin: 50px 10px 10px 10px;
+  }
+}
+
+#brand-images-container{
+  width: 100%;
+  height: 100%;
+}
+
+#brand-images-container a{
+  width: 100%;
+  height: 100%;
+}
+
+#brand-img{
+  width: 100%;
+  height: 100%;
 }
 
 /* Product retrieve CSS styles */
@@ -2285,7 +2394,7 @@
 }
 
 .list-product-banner-title-container {
-  width: 660px;
+  width: 690px;
   height: auto;
   display: flex;
   flex-direction: column;

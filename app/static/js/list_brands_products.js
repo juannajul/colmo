@@ -47,186 +47,169 @@ document.addEventListener('DOMContentLoaded', function() {
     });
  
     //tops products
-    category1Btn.addEventListener("click", function(){
-        let category1Title = document.getElementById('list-products-banner-category_1-title');
-        let category1 = category1Title.innerHTML;
-        console.log(category1.innerHTML)
-        if (activeCategory1 === false){
-            paginationNumber = 1
-            var category1Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&search=${category1}&page=${paginationNumber}`;
-            console.log(category1Url)
-            var deleteProducts = document.querySelectorAll('.list-product-box');
-            deleteProducts.forEach(product =>{
-                product.outerHTML = "";
-            });
-            activeCategory1 = true;
-            activeCategory2 = false;
-            activeCategory3 = false;
-            if (activeCategory1 === true){
-                changeTopTitle = document.querySelector('.list-tops-title');
-                changeTopBackground = document.querySelector('#list-products-banner-category_1');
-                changeTopTitle.style.color = 'rgba(255, 255, 255, 0.836)';
-                changeTopBackground.style.backgroundColor = '#2f466f';
-
-                changeBottomTitle = document.querySelector('.list-bottoms-title');
-                changeBottomBackground = document.querySelector('#list-products-banner-category_2');
-                changeBottomTitle.style.color = '#2f466f';
-                changeBottomBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeShoesTitle = document.querySelector('.list-shoes-title');
-                changeShoesBackground = document.querySelector('#list-products-banner-category_3');
-                changeShoesTitle.style.color = '#2f466f';
-                changeShoesBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-            }
-        } else if (activeCategory1 === true){
-            var category1Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&page=${paginationNumber}`;
-            var deleteProducts = document.querySelectorAll('.list-product-box');
-            deleteProducts.forEach(product =>{
-                product.outerHTML = "";
-            });
-            activeCategory1 = false;
-            activeCategory2 = false;
-            activeCategory3 = false;
+    if (category1Btn) {
+        category1Btn.addEventListener("click", function(){
+            let category1Title = document.getElementById('list-products-banner-category_1-title');
+            let category1 = category1Title.innerHTML;
+            console.log(category1.innerHTML)
             if (activeCategory1 === false){
-                changeTopTitle = document.querySelector('.list-tops-title');
-                changeTopBackground = document.querySelector('#list-products-banner-category_1');
-                changeTopTitle.style.color = '#2f466f';
-                changeTopBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeBottomTitle = document.querySelector('.list-bottoms-title');
-                changeBottomBackground = document.querySelector('#list-products-banner-category_2');
-                changeBottomTitle.style.color = '#2f466f';
-                changeBottomBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeShoesTitle = document.querySelector('.list-shoes-title');
-                changeShoesBackground = document.querySelector('#list-products-banner-category_3');
-                changeShoesTitle.style.color = '#2f466f';
-                changeShoesBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
+                paginationNumber = 1
+                var category1Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&search=${category1}&page=${paginationNumber}`;
+                console.log(category1Url)
+                var deleteProducts = document.querySelectorAll('.list-product-box');
+                deleteProducts.forEach(product =>{
+                    product.outerHTML = "";
+                });
+                activeCategory1 = true;
+                activeCategory2 = false;
+                activeCategory3 = false;
+                if (activeCategory1 === true){
+                    if (category1Btn){
+                        categoryBtnToggle('1', 'rgba(255, 255, 255, 0.836)', '#2f466f' )
+                    }
+                    if (category2Btn){
+                        categoryBtnToggle('2', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category3Btn){
+                        categoryBtnToggle('3', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                }
+            } else if (activeCategory1 === true){
+                var category1Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&page=${paginationNumber}`;
+                var deleteProducts = document.querySelectorAll('.list-product-box');
+                deleteProducts.forEach(product =>{
+                    product.outerHTML = "";
+                });
+                activeCategory1 = false;
+                activeCategory2 = false;
+                activeCategory3 = false;
+                if (activeCategory1 === false){
+                    if (category1Btn){
+                        categoryBtnToggle('1', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category2Btn){
+                        categoryBtnToggle('2', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category3Btn){
+                        categoryBtnToggle('3', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                }
             }
-        }
-        localStorage.setItem('filterUrl', category1Url);
-        listProduts(category1Url);
-    });
+            localStorage.setItem('filterUrl', category1Url);
+            listProduts(category1Url);
+        });
+    }
 
     // bottoms products
-    category2Btn.addEventListener("click", function(){
-        let category2Title = document.getElementById('list-products-banner-category_2-title');
-        let category2 = category2Title.innerHTML;
-        if (activeCategory2 === false){
-            paginationNumber = 1
-            var category2Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&search=${category2}&page=${paginationNumber}`;
-            var deleteProducts = document.querySelectorAll('.list-product-box');
-            deleteProducts.forEach(product =>{
-                product.outerHTML = "";
-            });
-            activeCategory1 = false;
-            activeCategory2 = true;
-            activeCategory3 = false;
-            if (activeCategory2 === true){
-                changeBottomTitle = document.querySelector('.list-bottoms-title');
-                changeBottomBackground = document.querySelector('#list-products-banner-category_2');
-                changeBottomTitle.style.color = 'rgba(255, 255, 255, 0.836)';
-                changeBottomBackground.style.backgroundColor = '#2f466f';
-
-                changeShoesTitle = document.querySelector('.list-shoes-title');
-                changeShoesBackground = document.querySelector('#list-products-banner-category_3');
-                changeShoesTitle.style.color = '#2f466f';
-                changeShoesBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeTopTitle = document.querySelector('.list-tops-title');
-                changeTopBackground = document.querySelector('#list-products-banner-category_1');
-                changeTopTitle.style.color = '#2f466f';
-                changeTopBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-            }
-        } else if (activeCategory2 === true) {
-            var category2Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&page=${paginationNumber}`;
-            var deleteProducts = document.querySelectorAll('.list-product-box');
-            deleteProducts.forEach(product =>{
-                product.outerHTML = "";
-            });
-            activeCategory1 = false;
-            activeCategory2 = false;
-            activeCategory3 = false;
+    if (category2Btn) {
+        category2Btn.addEventListener("click", function(){
+            let category2Title = document.getElementById('list-products-banner-category_2-title');
+            let category2 = category2Title.innerHTML;
             if (activeCategory2 === false){
-                changeBottomTitle = document.querySelector('.list-bottoms-title');
-                changeBottomBackground = document.querySelector('#list-products-banner-category_2');
-                changeBottomTitle.style.color = '#2f466f';
-                changeBottomBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeShoesTitle = document.querySelector('.list-shoes-title');
-                changeShoesBackground = document.querySelector('#list-products-banner-category_3');
-                changeShoesTitle.style.color = '#2f466f';
-                changeShoesBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeTopTitle = document.querySelector('.list-tops-title');
-                changeTopBackground = document.querySelector('#list-products-banner-category_1');
-                changeTopTitle.style.color = '#2f466f';
-                changeTopBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
+                paginationNumber = 1
+                var category2Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&search=${category2}&page=${paginationNumber}`;
+                var deleteProducts = document.querySelectorAll('.list-product-box');
+                deleteProducts.forEach(product =>{
+                    product.outerHTML = "";
+                });
+                activeCategory1 = false;
+                activeCategory2 = true;
+                activeCategory3 = false;
+                if (activeCategory2 === true){
+                    if (category1Btn){
+                        categoryBtnToggle('1', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category2Btn){
+                        categoryBtnToggle('2', 'rgba(255, 255, 255, 0.836)', '#2f466f')
+                    }
+                    if (category3Btn){
+                        categoryBtnToggle('3', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                }
+            } else if (activeCategory2 === true) {
+                var category2Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&page=${paginationNumber}`;
+                var deleteProducts = document.querySelectorAll('.list-product-box');
+                deleteProducts.forEach(product =>{
+                    product.outerHTML = "";
+                });
+                activeCategory1 = false;
+                activeCategory2 = false;
+                activeCategory3 = false;
+                if (activeCategory2 === false){
+                    if (category1Btn){
+                        categoryBtnToggle('1', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category2Btn){
+                        categoryBtnToggle('2', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category3Btn){
+                        categoryBtnToggle('3', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                }
             }
-        }
-        localStorage.setItem('filterUrl', category2Url);
-        listProduts(category2Url);
-    });
+            localStorage.setItem('filterUrl', category2Url);
+            listProduts(category2Url);
+        });
+    }
 
     // shoes products
-    category3Btn.addEventListener("click", function(){
-        let category3Title = document.getElementById('list-products-banner-category_3-title');
-        let category3 = category3Title.innerHTML;
-        if (activeCategory3 === false){
-            paginationNumber = 1
-            var category3Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&search=${category3}&page=${paginationNumber}`;
-            var deleteProducts = document.querySelectorAll('.list-product-box');
-            deleteProducts.forEach(product =>{
-                product.outerHTML = "";
-            });
-            activeCategory1 = false;
-            activeCategory2 = false;
-            activeCategory3 = true;
-            if (activeCategory3 === true){
-                changeShoesTitle = document.querySelector('.list-shoes-title');
-                changeShoesBackground = document.querySelector('#list-products-banner-category_3');
-                changeShoesTitle.style.color = 'rgba(255, 255, 255, 0.836)';
-                changeShoesBackground.style.backgroundColor = '#2f466f';
-
-                changeBottomTitle = document.querySelector('.list-bottoms-title');
-                changeBottomBackground = document.querySelector('#list-products-banner-category_2');
-                changeBottomTitle.style.color = '#2f466f';
-                changeBottomBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeTopTitle = document.querySelector('.list-tops-title');
-                changeTopBackground = document.querySelector('#list-products-banner-category_1');
-                changeTopTitle.style.color = '#2f466f';
-                changeTopBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-            }
-        } else if (activeCategory3 === true) {
-            var category3Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&page=${paginationNumber}`;
-            var deleteProducts = document.querySelectorAll('.list-product-box');
-            deleteProducts.forEach(product =>{
-                product.outerHTML = "";
-            });
-            activeCategory1 = false;
-            activeCategory2 = false;
-            activeCategory3 = false;
+    if (category3Btn){
+        category3Btn.addEventListener("click", function(){
+            let category3Title = document.getElementById('list-products-banner-category_3-title');
+            let category3 = category3Title.innerHTML;
             if (activeCategory3 === false){
-                changeShoesTitle = document.querySelector('.list-shoes-title');
-                changeShoesBackground = document.querySelector('#list-products-banner-category_3');
-                changeShoesTitle.style.color = '#2f466f';
-                changeShoesBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeBottomTitle = document.querySelector('.list-bottoms-title');
-                changeBottomBackground = document.querySelector('#list-products-banner-category_2');
-                changeBottomTitle.style.color = '#2f466f';
-                changeBottomBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
-
-                changeTopTitle = document.querySelector('.list-tops-title');
-                changeTopBackground = document.querySelector('#list-products-banner-category_1');
-                changeTopTitle.style.color = '#2f466f';
-                changeTopBackground.style.backgroundColor = 'rgba(255, 255, 255, 0.836)';
+                paginationNumber = 1
+                var category3Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&search=${category3}&page=${paginationNumber}`;
+                var deleteProducts = document.querySelectorAll('.list-product-box');
+                deleteProducts.forEach(product =>{
+                    product.outerHTML = "";
+                });
+                activeCategory1 = false;
+                activeCategory2 = false;
+                activeCategory3 = true;
+                if (activeCategory3 === true){
+                    if (category1Btn){
+                        categoryBtnToggle('1', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category2Btn){
+                        categoryBtnToggle('2', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category3Btn){
+                        categoryBtnToggle('3', 'rgba(255, 255, 255, 0.836)', '#2f466f')
+                    }
+                }
+            } else if (activeCategory3 === true) {
+                var category3Url = `/api/products/${brandSlug}/product_by_brand/?ordering=-created_at&page=${paginationNumber}`;
+                var deleteProducts = document.querySelectorAll('.list-product-box');
+                deleteProducts.forEach(product =>{
+                    product.outerHTML = "";
+                });
+                activeCategory1 = false;
+                activeCategory2 = false;
+                activeCategory3 = false;
+                if (activeCategory3 === false){
+                    if (category1Btn){
+                        categoryBtnToggle('1', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category2Btn){
+                        categoryBtnToggle('2', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                    if (category3Btn){
+                        categoryBtnToggle('3', '#2f466f', 'rgba(255, 255, 255, 0.836)')
+                    }
+                }
             }
-        }
-        listProduts(category3Url);
-        localStorage.setItem('filterUrl', category3Url);
-    });
+            listProduts(category3Url);
+            localStorage.setItem('filterUrl', category3Url);
+        });
+    }
+
+    function categoryBtnToggle(categoryNumber, new_color , new_brackground){
+        let changeCategoryTitle = document.querySelector(`.list-category${categoryNumber}-title`);
+        let changeCategoryBackground = document.querySelector(`#list-products-banner-category_${categoryNumber}`);
+        changeCategoryTitle.style.color = `${new_color}`;
+        changeCategoryBackground.style.backgroundColor = `${new_brackground}`;
+    }
 
     // pagination
     // Next page

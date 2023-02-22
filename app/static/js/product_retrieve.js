@@ -22,7 +22,6 @@ function productRetrieve(productSlug){
         .then(response => response.json())
         .then(product =>{
             var productCategories = product.category.join(" ");
-            console.log(productCategories)
             var pathImg1 = product.image;
             var pathImg2 = product.image2;
             var pathImg3 = product.image3;

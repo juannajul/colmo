@@ -46,9 +46,34 @@ class SoldProductAdmin(admin.ModelAdmin):
     search_fields = ('sold_confirmation__sold_number_code',)
     list_display_links = ('name',)
 
-@admin.register(SoldProductConfirmation)
+class SoldProductInline(admin.StackedInline):
+    model = SoldProduct
+    can_delete = True
+    readonly_fields = ('id', 'name','sold_confirmation', 'product_size', 'qty', 'slug', 'product', 'size')
+    verbose_name_plural = 'Order Products'
+
 class SoldProductConfirmationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'sold_number_code', 'confirmation', 'finished')
+    inlines = (SoldProductInline,)
+    list_display = ('id', 'sold_number_code', 'confirmation', 'finished',)
     list_filter = ('confirmation', 'finished')
     search_fields = ('id', 'sold_number_code')
     list_display_links = ('sold_number_code',)
+
+admin.site.register(SoldProductConfirmation, SoldProductConfirmationAdmin)
+
+"""
+    class ProductMediaInline(admin.StackedInline):
+    model = ProductMedia
+    can_delete = True
+    verbose_name_plural = 'Product images'
+
+class CustomProductAdmin(admin.ModelAdmin):
+    inlines = (SizeInline, ProductMediaInline)
+    list_display = ('id', 'name', 'sku', 'stock', 'is_active')
+    list_filter = ('categories', 'is_active')
+    search_fields = ('name', 'sku')
+    list_display_links = ('name',)
+    #actions = ['update_products_stock']
+
+
+admin.site.register(Product, CustomProductAdmin)"""

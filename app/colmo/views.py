@@ -29,11 +29,12 @@ def list_products(request, slug):
 def list_brands_products(request, brand_slug):
     brand = Brand.objects.get(slug=brand_slug)
     brand_principal_categories = brand.brand_filter_categories.all()
+    print(brand_principal_categories)
+    brand_name = brand.name
     return render(request, '../templates/brands/brand_products.html', {
+        'brand_name': brand_name,
         'brand_slug': brand_slug,
-        'brand_principal_category_1': brand_principal_categories[0],
-        'brand_principal_category_2': brand_principal_categories[1],
-        'brand_principal_category_3': brand_principal_categories[2],
+        'brand_categories': brand_principal_categories,
     })
 
 def login(request):
