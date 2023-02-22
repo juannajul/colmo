@@ -76,14 +76,3 @@ class CreateProductSerializer(serializers.ModelSerializer):
         product.stock = stock
         product.save()
         return data
-
-            # cambiar models y que product sizes tenga como foreignkey a product
-            #new arrivals. fecah de creacion del producto
-            # filtros Creo que se deria hacer modelo para creacion de filtros
-            # las tallas s=dsiponibles 
-            #actvivar descuentos
-            # dia epecifico activar descuento a usuarios con mas de 5 productos dentro del carrito
-            #no permitir category slug en mayusculas
-    
-    
-
