@@ -475,7 +475,6 @@ async function filterProductsBySize(){
                 listProduts(newFilterUrl);
             }, 300) 
         } else {
-            console.log("no hay tallas seleccionadas")
             var deleteProducts = document.querySelectorAll('.list-product-box');
             deleteProducts.forEach(product =>{
                 product.outerHTML = "";

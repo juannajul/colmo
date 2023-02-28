@@ -201,19 +201,16 @@ function checkoutConfirmation(){
                 fetch(`/api/products/${pSlug}/`)
                     .then(response => response.json())
                     .then(product =>{
-                        //console.log(product)
                         let soldProduct = product.id;
                         let productName = product.name;
                         let productSlug = product.slug;
+                        let productSku = product.sku;
                         let psize = document.querySelector(`.basket-product-size-${productSizeId}-${pSlug}`);
                         let productSize = psize.innerHTML
-                        console.log(productSize)
                         let soldProductSizeId = productSizeId;
                         let productSizeQty = document.querySelector(`.update-basket_${soldProductSizeId}_${product.slug}`);
                         let productConfirmation = confirmation.id;
-                        console.log(productSizeQty)
                         let qty = productSizeQty.value;
-                        console.log(qty)
                         fetch(`/api/sold_products/`, {
                             method: 'POST',
                             headers: {
@@ -223,7 +220,7 @@ function checkoutConfirmation(){
                             body: JSON.stringify({
                                 "name": productName,
                                 "slug": productSlug,
-                                "product": soldProduct,
+                                "sku": productSku,
                                 "size": productSize,
                                 "product_size": soldProductSizeId,
                                 "qty": qty,
@@ -250,7 +247,8 @@ function checkoutConfirmation(){
                 }).join(' ')
                 let newMsg = checkoutMsg.concat(' ', productMsg.trim()) + ' ' + 'total: $' + totalAmount;
                 console.log(newMsg )
-                window.location.href = `https://api.whatsapp.com/send?phone=584125553868&text=${newMsg}`
+                window.open(`https://api.whatsapp.com/send?phone=584125553868&text=${newMsg}`)
+                window.location.reload()
             }, 500)
         })
         

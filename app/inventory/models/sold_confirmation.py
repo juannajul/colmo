@@ -17,13 +17,13 @@ class SoldProductConfirmation(models.Model):
 
 class SoldProduct(models.Model):
     """Sold product model."""
-    name = models.CharField(max_length=255, default='', blank=True)
-    slug = models.CharField(max_length=255, default='', blank=True)
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, related_name="product_sold")
-    size = models.CharField(max_length=54, default='', blank=True)
+    name = models.CharField(max_length=255, blank=True)
+    slug = models.CharField(max_length=255, blank=True)
+    sku = models.CharField(max_length=255, blank=True)
+    size = models.CharField(max_length=54, blank=True)
     sold_confirmation = models.ForeignKey(SoldProductConfirmation, on_delete=models.CASCADE, related_name="sold_product_confirmation")
     product_size = models.ForeignKey(ProductSizes, on_delete=models.DO_NOTHING, related_name="product_size_sold")
     qty = models.PositiveIntegerField(default=0, blank=False)
 
     def __str__(self):
-        return  self.product.name
+        return  self.name

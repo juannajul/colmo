@@ -7,9 +7,6 @@ from inventory.models.sold_confirmation import SoldProduct, SoldProductConfirmat
 # Create your views here.
 
 def index(request):
-   # colmo_brand = Brand.objects.get(slug='colmo')
-    #colmo_user = colmo_brand.brand_user
-    #print(colmo_user.username)
     return render(request, '../templates/colmo/index.html')
 
 def product_retrieve(request, slug):
@@ -41,9 +38,9 @@ def login(request):
     return render(request, '../templates/users/login.html')
 
 def colmo_confirmation(request):
-    colmo_brand = Brand.objects.get(slug='colmo')
-    colmo_user = colmo_brand.brand_user
-    print(colmo_user.username)
-    return render(request, '../templates/colmo/sold_confirmation.html', {
-        "master_user": colmo_user
-    })
+    user = request.user
+    if user.is_superuser:
+        return render(request, '../templates/colmo/sold_confirmation.html', {
+            "master_user":user
+        })
+    return render(request, '../templates/colmo/index.html')

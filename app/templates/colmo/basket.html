@@ -32,7 +32,7 @@
                     {% for item in basket %}
                         {% with product=item.product %}
                         <label class="ws-msg" hidden>
-                            {{product.name}}: SKU: {{product.slug}} {% if product.is_sale_price_active == True %} precio: ${{product.sale_price}} {% else %} precio: ${{product.store_price}} {% endif %} cantidad: {{item.qty}}.
+                            - SKU: {{product.slug}} {% if product.is_sale_price_active == True %} precio: ${{product.sale_price}} {% else %} precio: ${{product.store_price}} {% endif %} cantidad: {{item.qty}}.
                         </label>
                             <div id="basket-product-container">
                                 <div id="basket-product-image-container">
@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                             <div id="basket-resumen-checkout-btn-container">
-                                <button id="basket-resumen-checkout-btn">Ir a pagar</button>
+                                <button id="basket-resumen-checkout-btn" >Ir a pagar</button>
                             </div>
                         </div>
                     </div>

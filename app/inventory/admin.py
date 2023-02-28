@@ -1,4 +1,3 @@
-from itertools import product
 from django.contrib import admin
 
 # Models
@@ -9,8 +8,13 @@ from inventory.models.sold_confirmation import SoldProductConfirmation
 
 # Register your models here.
 
+class ProductSizesInline(admin.TabularInline):
+    model = Product.sizes.through
+    verbose_name_plural = 'Product Sizes'
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    inlines = (ProductSizesInline,)
     list_display = ('id', 'name', 'sku', 'stock', 'is_active')
     list_filter = ('category', 'is_active', 'brand')
     search_fields = ('name', 'sku')
@@ -29,6 +33,7 @@ class ProductAdmin(admin.ModelAdmin):
                 product.stock = sizes_qty
                 product.save()
     update_products_stock.short_dedscription = 'Update Products sizes stock.'
+    #exclude=('sizes',)
 
 admin.site.register(Category)
 admin.site.register(Sizes)
@@ -36,6 +41,7 @@ admin.site.register(Brand)
 
 @admin.register(ProductSizes)
 class ProductSizesAdmin(admin.ModelAdmin):
+    inlines = (ProductSizesInline,)
     search_fields = ('id',)
     
 admin.site.register(DiscountCode)
@@ -49,7 +55,7 @@ class SoldProductAdmin(admin.ModelAdmin):
 class SoldProductInline(admin.StackedInline):
     model = SoldProduct
     can_delete = True
-    readonly_fields = ('id', 'name','sold_confirmation', 'product_size', 'qty', 'slug', 'product', 'size')
+    readonly_fields = ('id', 'name','sold_confirmation', 'product_size', 'slug', 'sku', 'size')
     verbose_name_plural = 'Order Products'
 
 class SoldProductConfirmationAdmin(admin.ModelAdmin):
@@ -60,20 +66,3 @@ class SoldProductConfirmationAdmin(admin.ModelAdmin):
     list_display_links = ('sold_number_code',)
 
 admin.site.register(SoldProductConfirmation, SoldProductConfirmationAdmin)
-
-"""
-    class ProductMediaInline(admin.StackedInline):
-    model = ProductMedia
-    can_delete = True
-    verbose_name_plural = 'Product images'
-
-class CustomProductAdmin(admin.ModelAdmin):
-    inlines = (SizeInline, ProductMediaInline)
-    list_display = ('id', 'name', 'sku', 'stock', 'is_active')
-    list_filter = ('categories', 'is_active')
-    search_fields = ('name', 'sku')
-    list_display_links = ('name',)
-    #actions = ['update_products_stock']
-
-
-admin.site.register(Product, CustomProductAdmin)"""

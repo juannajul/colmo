@@ -71,7 +71,6 @@ class ProductSizes(models.Model):
     def __str__(self):
         """Return brand name"""
         return f'{self.id} | Size: {self.size}, Qty: {self.qty}'
-        #{self.item_product_sizes}
     class Meta:
         verbose_name_plural = "Product sizes" 
 
@@ -82,7 +81,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255, unique=False, verbose_name="Product slug")
     description = models.TextField(max_length=455, blank=True, verbose_name="Product description")
     category = models.ManyToManyField(Category, blank=True, related_name="product_categories")
-    sizes = models.ManyToManyField(ProductSizes, related_name="item_product_sizes", null=True)
+    sizes = models.ManyToManyField(ProductSizes, related_name="item_product_sizes", null=True, blank=True)
     color = models.CharField(max_length=55, blank=True)
     image = models.ImageField(blank=True, upload_to="media/products/", verbose_name="product image")
     image2 = models.ImageField(blank=True, upload_to="media/products/", verbose_name="product image 2")
