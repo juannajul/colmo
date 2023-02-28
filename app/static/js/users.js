@@ -4,12 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (logoutBtn != null){ 
     logoutBtn.addEventListener("click", function(){
         logout();
-        
     });
     }
     loginBtn.addEventListener("click", function(){
         login(); 
-        
     });
     /*var logoutForm = document.getElementById("logout-form");
     if (logoutForm != null){
@@ -27,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
        
         }
     }*/
-    
 });
 
 function login(){
