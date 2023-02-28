@@ -238,7 +238,7 @@
   width: 10% !important;
 }
 
-@media (min-width:950px) {
+@media(min-width:949px) {
   #nav-menu-clothes:hover ~ .nav-menu-clothes-dropdown,
   #nav-menu-brands:hover ~ .nav-menu-brands-dropdown{
     transition: all 300ms ease;
