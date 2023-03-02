@@ -2781,10 +2781,10 @@
   flex-direction: column;
   width: 95%;
   margin-left: 102%;
-  height: 800px;
+  height: 650px;
   background: #ffffff;
   color: transparent;
-  top: 15px;
+  top: 50px;
   border: 1px solid rgba(68, 67, 67, 0.342);
   box-shadow: -3px 1px 7px rgb(82, 81, 81);
   z-index: 1005;
@@ -2797,7 +2797,10 @@
 
 #list-products-filters-content-container{
   width: 100%;
-  height: 670px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #list-products-close-filters-container{
@@ -2831,12 +2834,13 @@
   width: 90%;
   height: 60px;
   position: relative;
+  margin-bottom: 15px;
 }
 
 #save-filters-btn {
   width: 200px;
   height: 50px;
-  margin: -200px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   background: #9CBED3;
   border-radius: 30px;
   border: 0px solid blueviolet;
@@ -2900,7 +2904,8 @@
 .list-products-filter-size-box {
   display: flex;
   align-items: center;
-  width: 100px;
+  width: auto;
+  min-width: 45px;
   height: 40px;
   border: 1px solid rgba(68, 67, 67, 0.5);
   margin: 5px 10px 0px 0px;
@@ -2921,7 +2926,7 @@
 .list-products-filter-size-title {
   width: 100%;
   height: 100%;
-  padding-top: 9px;
+  padding: 10px 3px 0px 3px;
   cursor: pointer;
   background: none;
   font-size: 1rem;
@@ -2939,7 +2944,7 @@
 @media (max-width: 1800px) {
 
   #list-products-filters-desplegable{
-    height: 700px;
+    height: 650px;
   }
 
 }
