@@ -2908,7 +2908,7 @@
   min-width: 45px;
   height: 40px;
   border: 1px solid rgba(68, 67, 67, 0.5);
-  margin: 5px 10px 0px 0px;
+  margin: 0px 10px 0px 0px;
   border-radius: 5px;
   cursor: pointer;
   transition: all ease 400ms;
