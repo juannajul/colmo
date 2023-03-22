@@ -249,7 +249,7 @@ function checkoutConfirmation(){
                 console.log(newMsg )
                 //window.open(`https://api.whatsapp.com/send?phone=584125553868&text=${newMsg}`)
                 //window.location.reload()
-                window.location.assign(`https://api.whatsapp.com/send?phone=584125553868&text=${newMsg}`)
+                window.location.href = `https://api.whatsapp.com/send?phone=584125553868&text=${newMsg}`;
             }, 400)
         })
         
