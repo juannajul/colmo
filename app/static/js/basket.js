@@ -248,7 +248,7 @@ function checkoutConfirmation(){
                 let newMsg = checkoutMsg.concat(' ', productMsg.trim()) + ' ' + 'total: $' + totalAmount;
                 console.log(newMsg )
                 window.open(`https://api.whatsapp.com/send?phone=584125553868&text=${newMsg}`)
-                window.location.reload()
+                //window.location.reload()
             }, 500)
         })
         
