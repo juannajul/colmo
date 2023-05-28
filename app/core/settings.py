@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     # Third party apps
     'rest_framework',
     'django_filters',
-    'fontawesomefree'
+    'fontawesomefree',
+    'bootstrap5',
 ]
 
 # User & Authentications

@@ -128,6 +128,7 @@
 #nav-menu-brands-dropdown-category a,
 #nav>#nav-menu #nav-menu-brands{
   color: #2f466f;
+  text-decoration: none !important;
   font-family: MontserratBold;
   font-size: 14px;
   transition: all 400ms;
@@ -379,7 +380,7 @@
   margin-left: 9px;
   font-size: 15px;
   position: fixed;
-  top: -9px;
+  top: 0px;
   left: -7px;
   bottom: 13px;
   text-align: center;
@@ -556,6 +557,82 @@
 
 
 /* index banner css styles */
+.carousel-height {
+  height: 100vh !important;
+}
+
+.bg-img-1{
+  background-image: url("../img/nike.jpg");;
+}
+
+.bg-img-2{
+  background-image: url("../img/Hombres.jpg");;
+}
+
+.bg-img-3{
+  background-image: url("../img/Mujer.jpg");;
+}
+
+
+.carousel-image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.carousel-content{
+  width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#banner-btn{
+  width: 200px;
+  height: 50px;
+  margin: 0;
+  margin-top: -15px;
+  text-align: center;
+  border: 0px;
+  border-radius: 5px;
+  padding-top: 10px;
+  background: #2f466f;
+  cursor: pointer;
+  transition: all ease 400ms;
+}
+
+#banner-btn:hover{
+  background: #21314e;
+}
+
+#banner-btn-a{
+  width: 100%;
+  font-size: 20px;
+  font-family: MontserratBold;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+}
+#carousel-caption-image{
+  /* Estilos específicos para el caption del carrusel */
+  width: 200px;
+  margin: 0;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+
+}
+
+#carousel-caption-info #banner-btn:hover{
+  background: #21314e;
+}
+
+@media (max-width: 576px) {
+  
+}
+
 #colmo-design-background {
   width: 100%;
   height: 400px;
@@ -2952,6 +3029,7 @@
 
 /* whatsapp fixed button */
 .btn-wsp {
+  text-decoration: none;
   position: fixed;
   width: 55px;
   height: 55px;
@@ -2966,6 +3044,10 @@
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
   z-index: 100;
   transition: all 300ms ease;
+}
+
+.btn-wsp > h3{
+  line-height: 51px;
 }
 
 .btn-wsp:hover {

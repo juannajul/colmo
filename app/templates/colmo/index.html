@@ -3,52 +3,81 @@
 {% load static %}
 
 {% block body %}
-   <section id="index-content">
-      <!-- BANNER -->
-      <div id="index-banner-container">
-         <div class="capa"></div>
-         <div class="banner-content">
-         </div> 
+<section id="index-content">
+   <!-- BANNER -->
+
+   <div id="carouselExampleSlidesOnly" class="carousel slide carousel-height" data-bs-ride="carousel" >
+      <div class="carousel-inner carousel-height">
+        <div class="carousel-item carousel-image carousel-height bg-img-1 active">
+         <div class="carousel-content" >
+            <img id='carousel-caption-image' src="{% static '/img/Ropa-deportiva-Nike.png' %}" alt="">
+            <div id="banner-btn"><a id="banner-btn-a" href="{% url 'colmo:list_brand_products' brand_slug='nike' %}">Click aqui</a></div>
+         </div>
+        </div>
+        <div class="carousel-item carousel-image carousel-height bg-img-2">
+         <div class="carousel-content" >
+            <img id='carousel-caption-image' src="{% static '/img/Nike-hombres.png' %}" alt="">
+            <div id="banner-btn"><a id="banner-btn-a" href="{% url 'colmo:list_brand_products' brand_slug='nike' %}">Click aqui</a></div>
+         </div>
+        </div>
+        <div class="carousel-item carousel-image carousel-height bg-img-3">
+         <div class="carousel-content" >
+            <img id='carousel-caption-image' src="{% static '/img/Nike-mujer.png' %}" alt="">
+            <div id="banner-btn"><a id="banner-btn-a" href="{% url 'colmo:list_brand_products' brand_slug='nike' %}">Click aqui</a></div>
+         </div>
+        </div>
       </div>
-      <!--{% if request.user.is_authenticated %}
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+         </button>
+    </div>
+
+   <!--{% if request.user.is_authenticated %}
                     <p>¡Bienvenido {{ request.user.username }}!</p>
       {% endif %}-->
-      <!--<div id="colmo-design-background"></div>-->
-      <section id="index-brands-section">
-         <!-- title -->
-         <h3 class="index-brands-heading">Marcas</h3>
-         <div id="index-brands-container">
-            
-         </div>
-      </section>
-      <!-- PRODUCT SLIDER -->
-      <section id="product-slider-section">
-         <!-- title -->
-         <div class="product-slider-container">
-            <h3 class="product-slider-heading">Colmo - Recomendaciones</h3>
-         
-            <div class="glider-contain">
-               <div class="glider" id="glider-id">
-                     <!--Codigo para el carrusel de productos-->
-               </div>
-               
-               <div id="product-slider-previus-btn" class="glider-prev">
-                  <button aria-label="Previous" class="glider-prev">«</button>
-               </div>
-               <div id="product-slider-next-btn" class="glider-next">
-                  <button aria-label="Next" class="glider-next">»</button>
-               </div>
-               
-            </div>
-         </div>
+   <!--<div id="colmo-design-background"></div>-->
+   <section id="index-brands-section">
+      <!-- title -->
+      <h3 class="index-brands-heading">Marcas</h3>
+      <div id="index-brands-container">
 
-      </section>
+      </div>
+   </section>
+   <!-- PRODUCT SLIDER -->
+   <section id="product-slider-section">
+      <!-- title -->
+      <div class="product-slider-container">
+         <h3 class="product-slider-heading">Colmo - Recomendaciones</h3>
+
+         <div class="glider-contain">
+            <div class="glider" id="glider-id">
+               <!--Codigo para el carrusel de productos-->
+            </div>
+
+            <div id="product-slider-previus-btn" class="glider-prev">
+               <button aria-label="Previous" class="glider-prev">«</button>
+            </div>
+            <div id="product-slider-next-btn" class="glider-next">
+               <button aria-label="Next" class="glider-next">»</button>
+            </div>
+
+         </div>
+      </div>
 
    </section>
+
+</section>
 {% endblock body %}
 
 {% block script %}
-   <script src="{% static '/js/brands.js' %}"></script>
-    <script src="{% static '/js/carousel.js' %}"></script>
-    <script src="{% static '/js/glider.min.js' %}"></script>
+<script src="{% static '/js/brands.js' %}"></script>
+<script src="{% static '/js/carousel.js' %}"></script>
+<script src="{% static '/js/glider.min.js' %}"></script>
 {% endblock %}
